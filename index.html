@@ -24,7 +24,7 @@
             border-bottom: 4px solid #004d26;
         }
 
-        .quiz-option { transition: all 0.2s ease; }
+        .quiz-option { transition: all 0.2s ease; border: 1px solid #e2e8f0; }
         .quiz-option:hover { background-color: #f1f5f9; border-color: #006432; }
         .quiz-option.correct { background-color: #dcfce7; border-color: #22c55e; color: #166534; font-weight: bold; }
         .quiz-option.wrong { background-color: #fee2e2; border-color: #ef4444; color: #991b1b; }
@@ -42,7 +42,7 @@
     <header class="mensa-green-primary text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
             <div class="flex items-center space-x-4">
-                <img src="mensalogo.jpeg" alt="Mensa Brasil Logo" class="h-12 brightness-0 invert">
+                <img src="logo-mensa_M.png" alt="Mensa Brasil Logo" class="h-12 brightness-0 invert" onerror="this.src='https://mensa.org.br/wp-content/uploads/2021/11/cropped-logo-mensa-brasil-192x192.png'">
                 <div class="border-l border-green-400 pl-4">
                     <h1 class="text-xl font-bold leading-tight">Jovens Brilhantes</h1>
                     <p class="text-xs uppercase tracking-widest text-green-200">Catálogo Preparatório para Olimpíadas</p>
@@ -55,21 +55,24 @@
         
         <section class="mb-12 text-center">
             <h2 class="text-3xl font-bold text-mensa-green mb-4">Bem-vindo ao Treinamento de Elite</h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                Espaço dedicado aos membros do programa Jovens Brilhantes para o aprimoramento em competições científicas nacionais e internacionais.
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Espaço dedicado aos membros do programa Jovens Brilhantes para o aprimoramento em competições científicas. Explore a teoria e teste seus conhecimentos com nossos simulados.
             </p>
         </section>
 
-        <!-- Tabs -->
-        <div class="flex flex-wrap justify-center gap-2 mb-8" id="olympiad-tabs">
-            <button onclick="switchOlympiad('obmep')" id="tab-obmep" class="btn-tab active px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">OBMEP</button>
-            <button onclick="switchOlympiad('obm')" id="tab-obm" class="btn-tab px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">OBM</button>
-            <button onclick="switchOlympiad('canguru')" id="tab-canguru" class="btn-tab px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">Canguru de Matemática</button>
-            <button onclick="switchOlympiad('oba')" id="tab-oba" class="btn-tab px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">OBA (Astronomia)</button>
-            <button onclick="switchOlympiad('mobfog')" id="tab-mobfog" class="btn-tab px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">MOBFOG (Foguetes)</button>
+        <!-- Abas de Navegação em Duas Linhas -->
+        <div class="flex flex-col items-center gap-3 mb-8" id="olympiad-tabs">
+            <div class="flex flex-wrap justify-center gap-2">
+                <button onclick="switchOlympiad('obmep')" id="tab-obmep" class="btn-tab active px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">OBMEP</button>
+                <button onclick="switchOlympiad('obm')" id="tab-obm" class="btn-tab px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">OBM</button>
+                <button onclick="switchOlympiad('canguru')" id="tab-canguru" class="btn-tab px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">Canguru de Matemática</button>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2">
+                <button onclick="switchOlympiad('oba')" id="tab-oba" class="btn-tab px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">OBA (Astronomia)</button>
+                <button onclick="switchOlympiad('obafog')" id="tab-obafog" class="btn-tab px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">OBAFOG (Foguetes)</button>
+            </div>
         </div>
 
-        <!-- Levels Selection -->
         <div id="levels-container" class="mb-10 flex flex-col items-center gap-4"></div>
 
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -82,10 +85,10 @@
             </aside>
 
             <section class="lg:col-span-3">
-                <div id="learning-content" class="bg-white p-8 rounded-xl shadow-md border border-gray-100 min-h-[400px]">
+                <div id="learning-content" class="bg-white p-8 rounded-xl shadow-md border border-gray-100 min-h-[450px]">
                     <div id="welcome-message" class="text-center py-20">
                         <svg class="w-16 h-16 text-green-200 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        <h4 class="text-xl font-medium text-gray-400">Selecione uma olimpíada e um nível acima.</h4>
+                        <h4 class="text-xl font-medium text-gray-400">Escolha uma olimpíada e um nível para carregar os desafios.</h4>
                     </div>
                     <div id="theory-section" class="hidden"></div>
                 </div>
@@ -95,8 +98,8 @@
 
     <footer class="bg-gray-900 text-gray-400 py-12 mt-20 text-center">
         <div class="max-w-7xl mx-auto px-4">
-            <img src="mensalogo.jpeg" alt="Mensa Brasil Logo" class="h-8 mb-4 mx-auto grayscale opacity-50">
-            <p class="text-sm">© 2024 Mensa Brasil - Programa Jovens Brilhantes.<br>Transformando potencial em inteligência estratégica.</p>
+            <img src="logo-mensa.png" alt="Mensa Brasil Logo" class="h-8 mb-4 mx-auto grayscale opacity-50" onerror="this.src='https://mensa.org.br/wp-content/uploads/2021/11/cropped-logo-mensa-brasil-192x192.png'">
+            <p class="text-sm">© 2024 Mensa Brasil - Programa Jovens Brilhantes.<br>Inteligência, estratégia e excelência acadêmica.</p>
         </div>
     </footer>
 
@@ -110,41 +113,54 @@
                             <div class="bg-mensa-green-primary p-3 rounded-lg"><svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg></div>
                             <h3 class="text-2xl font-bold text-gray-900">Guia da OBMEP 2026</h3>
                         </div>
-                        <p class="text-lg text-gray-700">A OBMEP é organizada em 3 níveis principais, além da competição Mirim.</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-green-50 p-4 rounded-xl border border-green-100">
-                                <h4 class="font-bold text-mensa-green">Níveis Tradicionais</h4>
-                                <ul class="text-sm space-y-1 mt-2">
-                                    <li>• <strong>Nível 1:</strong> 6º e 7º anos EF.</li>
-                                    <li>• <strong>Nível 2:</strong> 8º e 9º anos EF.</li>
-                                    <li>• <strong>Nível 3:</strong> Ensino Médio.</li>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            A OBMEP (Olimpíada Brasileira de Matemática das Escolas Públicas) é organizada em apenas 3 níveis principais para o ensino regular, além de uma competição separada para os menores.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-green-50 p-6 rounded-xl border border-green-100 space-y-3">
+                                <h4 class="font-bold text-mensa-green uppercase tracking-wide text-sm">Níveis da OBMEP Tradicional</h4>
+                                <ul class="space-y-2 text-gray-700 text-sm">
+                                    <li><strong>• Nível 1:</strong> Alunos de 6º e 7º anos do EF.</li>
+                                    <li><strong>• Nível 2:</strong> Alunos de 8º e 9º anos do EF.</li>
+                                    <li><strong>• Nível 3:</strong> Alunos de qualquer série do Ensino Médio.</li>
                                 </ul>
                             </div>
-                            <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                                <h4 class="font-bold text-blue-700">OBMEP Mirim</h4>
-                                <ul class="text-sm space-y-1 mt-2">
-                                    <li>• <strong>Mirim 1:</strong> 2º e 3º anos EF.</li>
-                                    <li>• <strong>Mirim 2:</strong> 4º e 5º anos EF.</li>
+                            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 space-y-3">
+                                <h4 class="font-bold text-blue-700 uppercase tracking-wide text-sm">A "OBMEP Mirim"</h4>
+                                <ul class="space-y-2 text-gray-700 text-sm">
+                                    <li><strong>• Mirim 1:</strong> Alunos de 2º e 3º anos.</li>
+                                    <li><strong>• Mirim 2:</strong> Alunos de 4º e 5º anos.</li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="info-card p-6 rounded-lg">
-                            <h5 class="font-bold text-mensa-green mb-2">Estrutura das Fases</h5>
-                            <p class="text-sm"><strong>1ª Fase:</strong> 20 questões objetivas. <strong>2ª Fase:</strong> 6 questões discursivas para os 5% melhores. É onde o raciocínio escrito é avaliado!</p>
+
+                        <div class="info-card p-6 rounded-lg shadow-sm">
+                            <h5 class="font-bold text-mensa-green mb-3">Estrutura das Fases</h5>
+                            <div class="space-y-2 text-sm text-gray-700">
+                                <p><strong>1ª Fase (Objetiva):</strong> Prova com 20 questões de múltipla escolha.</p>
+                                <p><strong>2ª Fase (Discursiva):</strong> Apenas os 5% melhores avançam. Prova de 6 questões dissertativas: você precisa escrever todo o raciocínio. <strong>É aqui que o bicho pega!</strong></p>
+                            </div>
                         </div>
+
+                        <div class="bg-amber-50 p-6 rounded-xl border border-amber-100 mb-4">
+                            <h5 class="font-bold text-amber-800 mb-1">Premiações</h5>
+                            <p class="text-sm text-amber-900 leading-relaxed">Medalhistas de escolas públicas ganham o PIC com bolsa mensal. Universidades reservam "Vagas Olímpicas" para medalhistas, sem vestibular!</p>
+                        </div>
+
                         <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-                            <summary class="flex justify-between items-center p-5 font-bold text-mensa-green hover:bg-green-50">
+                            <summary class="flex justify-between items-center p-5 font-bold text-mensa-green hover:bg-green-50 transition-colors">
                                 <span>E quem estuda em escola particular?</span>
                                 <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
                             </summary>
-                            <div class="p-6 pt-0 text-sm space-y-3 border-t border-gray-100">
-                                <p><strong>Alunos de escolas privadas também podem participar</strong> da OBMEP, com algumas regras:</p>
-                                <ul class="list-disc pl-5 space-y-2">
-                                    <li><strong>Taxas:</strong> Escolas privadas pagam taxa de inscrição.</li>
-                                    <li><strong>Premiação:</strong> Categorias separadas para garantir equilíbrio com a rede pública.</li>
-                                    <li><strong>PIC:</strong> Medalhistas de privadas participam das atividades, mas não recebem bolsa em dinheiro.</li>
-                                    <li><strong>Vagas Olímpicas:</strong> A medalha vale para ingresso direto em universidades (USP, UNICAMP).</li>
-                                </ul>
+                            <div class="p-6 pt-0 border-t border-gray-100 text-sm text-gray-700 leading-relaxed space-y-4">
+                                <p>Alunos de escolas privadas também podem participar com regras próprias:</p>
+                                <div class="space-y-2">
+                                    <p><strong>• Inscrição:</strong> Paga pela instituição (ex: R$ 200 até 40 alunos).</p>
+                                    <p><strong>• Premiação:</strong> Categorias separadas para equilíbrio de recursos.</p>
+                                    <p><strong>• PIC:</strong> Podem fazer as aulas e atividades (ótimo para currículo), mas não recebem bolsa.</p>
+                                    <p><strong>• Vagas:</strong> Medalhas valem normalmente para USP, UNICAMP e outras.</p>
+                                </div>
                             </div>
                         </details>
                     </div>
@@ -158,30 +174,34 @@
                 ],
                 subjects: {
                     'M1': [
-                        {id:'m1_1', title:'Contagem e Somas', theory:'Contar objetos e somas simples até 20.', questions:[{q:"5+4?", options:["8","9","10","7"], correct:1}, {q:"Quantos dedos em 2 mãos?", options:["5","10","15","2"], correct:1}, {q:"Próximo: 2, 4, 6...?", options:["7","8","9","10"], correct:1}, {q:"3 gatos têm quantas patas?", options:["4","8","12","16"], correct:2}, {q:"Depois do 10?", options:["9","11","12","8"], correct:1}]},
-                        {id:'m1_2', title:'Formas Básicas', theory:'Reconhecer triângulos, quadrados e círculos.', questions:[{q:"Forma da pizza:", options:["Círculo","Quadrado","Triângulo","Ponto"], correct:2}, {q:"Lados do quadrado:", options:["2","3","4","5"], correct:2}, {q:"Parece uma bola:", options:["Cubo","Círculo","Reta","Cone"], correct:1}, {q:"Tem 4 pontas iguais:", options:["Triângulo","Quadrado","Círculo","Reta"], correct:1}, {q:"Folha de papel A4:", options:["Retângulo","Círculo","Triângulo","Esfera"], correct:0}]}
+                        {id:'m1_1', title:'Contagem Divertida', theory:'Aprender a contar objetos e fazer pequenas somas.', questions: [{q:"João tem 5 maçãs e ganha 3. Total?", options:["7","8","9","10"], correct:1}, {q:"Quantas rodas em 2 carros?", options:["4","6","8","10"], correct:2}, {q:"Próximo: 1, 3, 5...?", options:["6","7","8","9"], correct:1}, {q:"Quantas mãos têm 10 dedos?", options:["1","2","3","4"], correct:1}, {q:"Depois do 14:", options:["13","15","16","20"], correct:1}]},
+                        {id:'m1_2', title:'Cores e Padrões', theory:'Identificar sequências que se repetem.', questions: [{q:"V, A, V, A. Qual próximo?", options:["V","A","G","P"], correct:0}, {q:"Círculo, Quadrado, Círculo...", options:["Círculo","Quadrado","Reta","Ponto"], correct:1}, {q:"1, 2, 1, 2, ...?", options:["1","2","3","4"], correct:0}, {q:"Pequeno, Médio, Grande, Pequeno...?", options:["P","M","G","X"], correct:1}, {q:"Baixo, Alto, Baixo...?", options:["B","A","C","D"], correct:1}]},
+                        {id:'m1_3', title:'Formas do Mundo', theory:'Identificar triângulos e quadrados em objetos reais.', questions: [{q:"Pizza parece um:", options:["Quadrado","Triângulo","Ponto","Círculo"], correct:1}, {q:"Roda é um:", options:["Quadrado","Círculo","Cubo","Reta"], correct:1}, {q:"Lados do triângulo:", options:["1","2","3","4"], correct:2}, {q:"Folha A4 parece:", options:["Círculo","Retângulo","Linha","Bola"], correct:0}, {q:"Dado parece um:", options:["Cubo","Círculo","Esfera","Cone"], correct:0}]},
+                        {id:'m1_4', title:'Lógica de Posição', theory:'Esquerda, direita, em cima, embaixo.', questions: [{q:"Sol fica:", options:["Em cima","Embaixo","No chão","Perto"], correct:0}, {q:"Tênis fica no:", options:["Pé","Mão","Cabeça","Braço"], correct:0}, {q:"João está atrás de Maria. Maria está:", options:["Atrás","Na frente","Longe","Baixo"], correct:1}, {q:"Chapéu fica na:", options:["Mão","Barriga","Cabeça","Orelha"], correct:2}, {q:"Luva fica na:", options:["Mão","Pé","Orelha","Nariz"], correct:0}]}
                     ],
                     'M2': [
-                        {id:'m2_1', title:'Raciocínio Lógico', theory:'Dobro, triplo e partilhas simples.', questions:[{q:"Dobro de 8:", options:["12","14","16","18"], correct:2}, {q:"15 balas para 3 crianças:", options:["3","4","5","6"], correct:2}, {q:"Triplo de 3:", options:["6","9","12","15"], correct:1}, {q:"Minutos em 1 hora:", options:["30","60","100","12"], correct:1}, {q:"2 semanas têm quantos dias?", options:["7","10","14","20"], correct:2}]},
-                        {id:'m2_2', title:'Medidas e Perímetros', theory:'Soma dos contornos das figuras.', questions:[{q:"Perímetro quadrado lado 2:", options:["4","6","8","10"], correct:2}, {q:"Lado 3 e 5, perímetro retângulo:", options:["8","10","15","16"], correct:3}, {q:"Instrumento para peso:", options:["Régua","Balança","Relógio","Trena"], correct:1}, {q:"Área quadrado lado 3:", options:["6","9","12","15"], correct:1}, {q:"Dobrar lado 5cm vira:", options:["5cm","10cm","15cm","20cm"], correct:1}]}
+                        {id:'m2_1', title:'Dobro e Metade', theory:'Introdução à multiplicação e divisão simples.', questions: [{q:"Dobro de 10:", options:["15","20","25","30"], correct:1}, {q:"Metade de 20:", options:["5","10","15","2"], correct:1}, {q:"Triplo de 3:", options:["6","9","12","1"], correct:1}, {q:"10 dividido por 2:", options:["2","5","10","1"], correct:1}, {q:"Dobro de 5 somado com 1:", options:["6","10","11","12"], correct:2}]},
+                        {id:'m2_2', title:'Medindo o Tempo', theory:'Relógios e calendários.', questions: [{q:"Minutos em 1 hora:", options:["30","60","100","12"], correct:1}, {q:"Dias na semana:", options:["5","6","7","8"], correct:2}, {q:"Horas em 1 dia:", options:["12","24","48","60"], correct:1}, {q:"Mês 1 do ano:", options:["Jan","Fev","Dez","Mar"], correct:0}, {q:"Dia depois de sexta:", options:["Segunda","Sábado","Domingo","Quinta"], correct:1}]},
+                        {id:'m2_3', title:'Perímetros Simples', theory:'Contorno de figuras quadradas.', questions: [{q:"Lado 2, perímetro quadrado:", options:["4","6","8","10"], correct:2}, {q:"Retângulo 3 e 5, perímetro:", options:["8","15","16","10"], correct:2}, {q:"Lado 1, triângulo equilátero:", options:["1","2","3","4"], correct:2}, {q:"Perímetro hexágono lado 1:", options:["4","6","8","1"], correct:1}, {q:"Lado 10, quadrado:", options:["20","40","100","10"], correct:1}]},
+                        {id:'m2_4', title:'Frações Visuais', theory:'Partes de uma pizza ou bolo.', questions: [{q:"Cortei ao meio, tenho:", options:["1/2","1/3","1/4","1/5"], correct:0}, {q:"Um quarto é:", options:["1/2","1/4","1/8","1/1"], correct:1}, {q:"Comi 3 partes de 4:", options:["1/4","3/4","4/4","0"], correct:1}, {q:"Inteiro tem quantos meios?", options:["1","2","3","4"], correct:1}, {q:"Pizza em 8, comi 1:", options:["1/8","8/1","1/2","0"], correct:0}]}
                     ],
                     1: [
-                        {id:'n1_1', title:'Divisibilidade e Restos', theory:'Um número inteiro é divisível por outro se o resto é zero.', questions:[{q:"Resto de 10 por 3?", options:["0","1","2","3"], correct:1}, {q:"Divisível por 5 termina em:", options:["0 ou 2","1 ou 5","0 ou 5","2 ou 8"], correct:2}, {q:"Soma 1+2 é divisível por 3?", options:["Sim","Não","Talvez","Só se for par"], correct:0}, {q:"Resto de 7 por 2:", options:["0","1","2","3"], correct:1}, {q:"Número par é divisível por:", options:["2","3","5","7"], correct:0}]},
-                        {id:'n1_2', title:'Contagem e Lógica', theory:'Princípio multiplicativo: n x m possibilidades.', questions:[{q:"3 blusas e 2 saias, total looks?", options:["5","6","1","9"], correct:1}, {q:"2 caminhos de A a B, 3 de B a C. Total?", options:["5","6","10","1"], correct:1}, {q:"Faces de um dado comum:", options:["4","6","8","10"], correct:1}, {q:"Sorteio 1 a 10, chance de par?", options:["20%","50%","100%","10%"], correct:1}, {q:"Metade de 100:", options:["25","40","50","75"], correct:2}]},
-                        {id:'n1_3', title:'Geometria Plana', theory:'Áreas de quadrados e retângulos.', questions:[{q:"Área 4x5:", options:["9","20","25","10"], correct:1}, {q:"Perímetro quadrado lado 10:", options:["20","40","100","10"], correct:1}, {q:"Área triângulo base 4 altura 2:", options:["8","4","2","6"], correct:1}, {q:"Soma ângulos triângulo:", options:["90","180","360","45"], correct:1}, {q:"Quadrado tem quantos ângulos retos?", options:["1","2","3","4"], correct:3}]},
-                        {id:'n1_4', title:'Frações e Decimais', theory:'Partes do inteiro. 1/2 = 0.5.', questions:[{q:"1/4 de 100:", options:["10","20","25","50"], correct:2}, {q:"0,5 + 0,5:", options:["0,10","1","0,55","0"], correct:1}, {q:"Maior fração: 1/2 ou 1/4?", options:["1/2","1/4","Iguais","Depende"], correct:0}, {q:"3/4 em decimal:", options:["0,34","0,75","0,25","0,5"], correct:1}, {q:"Metade da metade:", options:["1/2","1/4","1/8","1"], correct:1}]}
+                        {id:'n1_1', title:'Divisibilidade e Restos', theory:'Um número inteiro é divisível por outro se o resto é zero.', questions:[{q:"Resto de 10 por 3?", options:["0","1","2","3"], correct:1}, {q:"Divisível por 5 termina em:", options:["0,2","1,5","0,5","2"], correct:2}, {q:"Soma 1+2 é div por 3?", options:["Sim","Não","Talvez","Só par"], correct:0}, {q:"Resto de 7 por 2:", options:["0","1","2","3"], correct:1}, {q:"Par é div por:", options:["2","3","5","7"], correct:0}]},
+                        {id:'n1_2', title:'Contagem e Lógica', theory:'Princípios multiplicativos.', questions:[{q:"3 blusas 2 saias:", options:["5","6","8","9"], correct:1}, {q:"Caminhos 2x3:", options:["5","6","10","12"], correct:1}, {q:"Chance par dado 1-10:", options:["20%","50%","100%","10%"], correct:1}, {q:"Próximo 2, 4, 6:", options:["7","8","9","10"], correct:1}, {q:"Metade de 50:", options:["10","20","25","30"], correct:2}]},
+                        {id:'n1_3', title:'Geometria Plana', theory:'Áreas e ângulos básicos.', questions:[{q:"Área 4x5:", options:["9","20","25","10"], correct:1}, {q:"Ângulo reto mede:", options:["45","90","180","360"], correct:1}, {q:"Lado 10, perímetro quadrado:", options:["20","40","100","10"], correct:1}, {q:"Triângulo base 4 h=2:", options:["8","4","2","6"], correct:1}, {q:"Soma ângulos triângulo:", options:["90","180","360","45"], correct:1}]},
+                        {id:'n1_4', title:'Frações e Decimais', theory:'Operações decimais.', questions:[{q:"1/4 de 100:", options:["10","20","25","50"], correct:2}, {q:"0,5 + 0,5:", options:["0,1","1","0,55","0"], correct:1}, {q:"Maior 1/2 ou 1/3:", options:["1/2","1/3","Iguais","Zero"], correct:0}, {q:"3/4 em decimal:", options:["0,34","0,75","0,25","0,5"], correct:1}, {q:"Metade de 1/2:", options:["1/4","1/8","1","0"], correct:0}]}
                     ],
                     2: [
-                        {id:'n2_1', title:'Álgebra e Equações', theory:'Resolver incógnitas x e y em sistemas.', questions:[{q:"x + 5 = 12, x é:", options:["5","7","17","10"], correct:1}, {q:"2x = 10, x é:", options:["2","5","20","1"], correct:1}, {q:"x + y = 10, x - y = 2. x?", options:["4","6","8","10"], correct:1}, {q:"Dobro de x é 14:", options:["7","14","28","2"], correct:0}, {q:"x/2 = 4, x é:", options:["2","4","6","8"], correct:3}]},
-                        {id:'n2_2', title:'Geometria: Pitágoras', theory:'a² + b² = c² em triângulos retângulos.', questions:[{q:"Catetos 3 e 4, hipotenusa?", options:["5","6","7","10"], correct:0}, {q:"Catetos 6 e 8, hipotenusa?", options:["10","12","14","20"], correct:0}, {q:"Hipotenusa 13, cateto 5, outro?", options:["8","10","12","7"], correct:2}, {q:"Ângulo reto mede:", options:["45","90","180","360"], correct:1}, {q:"Triângulo com 3 lados iguais:", options:["Escaleno","Isósceles","Equilátero","Reto"], correct:2}]},
-                        {id:'n2_3', title:'Probabilidade', theory:'Eventos favoráveis sobre totais.', questions:[{q:"Dado comum, sair 6:", options:["1/2","1/3","1/6","1"], correct:2}, {q:"Moeda, sair cara:", options:["0","0.5","1","2"], correct:1}, {q:"Urna 2v e 2a, sair azul:", options:["1/4","1/2","3/4","1"], correct:1}, {q:"Chance 100% é:", options:["Impossível","Certa","Rara","Boa"], correct:1}, {q:"Probabilidade nunca é maior que:", options:["0","1","10","100"], correct:1}]},
-                        {id:'n2_4', title:'Proporcionalidade', theory:'Regra de três e porcentagem.', questions:[{q:"10% de 200:", options:["10","20","30","40"], correct:1}, {q:"3 canetas 12 reais, 5 canetas?", options:["15","18","20","24"], correct:2}, {q:"Aumento de 50% em 100:", options:["100","150","200","50"], correct:1}, {q:"Desconto 10% em 80:", options:["70","72","75","78"], correct:1}, {q:"25% é o mesmo que:", options:["1/2","1/4","1/5","1/10"], correct:1}]}
+                        {id:'n2_1', title:'Álgebra e Equações', theory:'Resolver incógnitas x.', questions:[{q:"x+5=12, x?", options:["5","7","17","10"], correct:1}, {q:"2x=20, x?", options:["2","10","40","5"], correct:1}, {q:"x+y=10, x-y=2. x?", options:["4","6","8","10"], correct:1}, {q:"Dobro de x é 14:", options:["7","14","28","2"], correct:0}, {q:"x/2=5, x?", options:["2.5","10","15","20"], correct:1}]},
+                        {id:'n2_2', title:'Geometria: Pitágoras', theory:'a² + b² = c².', questions:[{q:"Catetos 3 e 4, hipotenusa?", options:["5","6","7","10"], correct:0}, {q:"Hipotenusa 13, cateto 5:", options:["8","10","12","15"], correct:2}, {q:"Lado quadrado 1, diagonal:", options:["1","2","raiz(2)","raiz(3)"], correct:2}, {q:"Ângulo reto:", options:["45","90","180","360"], correct:1}, {q:"3 lados iguais é:", options:["Isósceles","Escaleno","Equilátero","Reto"], correct:2}]},
+                        {id:'n2_3', title:'Probabilidade', theory:'Favoráveis / Totais.', questions:[{q:"Sair 6 no dado:", options:["1/2","1/3","1/6","1"], correct:2}, {q:"Moeda cara:", options:["0","0.5","1","2"], correct:1}, {q:"Urna 5v 5a, azul:", options:["25%","50%","75%","100%"], correct:1}, {q:"Impossível é:", options:["0","1","0.5","10%"], correct:0}, {q:"Prob total é:", options:["0","0.5","1","10"], correct:2}]},
+                        {id:'n2_4', title:'Proporcionalidade', theory:'Regra de três.', questions:[{q:"10% de 200:", options:["10","20","30","40"], correct:1}, {q:"3 canetas 12 reais, 10?", options:["30","40","50","60"], correct:1}, {q:"Aumento 50% em 100:", options:["100","150","200","50"], correct:1}, {q:"Desconto 20% em 100:", options:["80","90","70","60"], correct:0}, {q:"25% de 40:", options:["5","10","15","20"], correct:1}]}
                     ],
                     3: [
-                        {id:'n3_1', title:'Análise Combinatória', theory:'Permutações e combinações complexas.', questions:[{q:"Anagramas de MENSA:", options:["60","120","240","720"], correct:1}, {q:"Comissão de 2 em 5 pessoas:", options:["5","10","15","20"], correct:1}, {q:"Fatorial de 4 (4!):", options:["12","24","48","6"], correct:1}, {q:"Arranjo de 3 em 3:", options:["3","6","9","12"], correct:1}, {q:"Combinação ordem importa?", options:["Sim","Não","Às vezes","Sempre"], correct:1}]},
-                        {id:'n3_2', title:'Geometria Espacial', theory:'Volumes de cilindros e esferas.', questions:[{q:"Volume cubo aresta 2:", options:["4","6","8","10"], correct:2}, {q:"Raio 2, altura 5, Volume cilindro (pi=3):", options:["20","30","60","120"], correct:2}, {q:"Área total cubo aresta 1:", options:["1","4","6","12"], correct:2}, {q:"Esfera tem faces?", options:["0","1","2","Infinitas"], correct:0}, {q:"Pirâmide base quadrada tem quantas faces?", options:["4","5","6","8"], correct:1}]},
-                        {id:'n3_3', title:'Sequências: PA e PG', theory:'Progressões e somas de termos.', questions:[{q:"PA: 2, 5, 8... 4º termo?", options:["10","11","12","13"], correct:1}, {q:"Razão da PA 10, 7, 4:", options:["3","-3","1","0"], correct:1}, {q:"PG: 3, 6, 12... 4º termo?", options:["18","24","36","48"], correct:1}, {q:"Soma 1+2+3+4+5:", options:["10","15","20","25"], correct:1}, {q:"Razão PG 2, 10, 50:", options:["2","5","8","10"], correct:1}]},
-                        {id:'n3_4', title:'Funções e Logaritmos', theory:'Logaritmos e funções quadráticas.', questions:[{q:"log2(8):", options:["2","3","4","8"], correct:1}, {q:"f(x)=x², f(3):", options:["6","9","12","3"], correct:1}, {q:"log10(100):", options:["1","2","10","100"], correct:1}, {q:"Vértice da parábola ax²+bx+c:", options:["Máximo/Mínimo","Raiz","Zero","Eixo"], correct:0}, {q:"log(1) vale:", options:["0","1","10","e"], correct:0}]}
+                        {id:'n3_1', title:'Análise Combinatória', theory:'Agrupamentos e fatoriais.', questions:[{q:"Anagramas MENSA:", options:["60","120","240","720"], correct:1}, {q:"Comissão 2 em 5:", options:["5","10","20","25"], correct:1}, {q:"4! vale:", options:["12","24","48","6"], correct:1}, {q:"Escolha 1 em 10:", options:["1","10","100","20"], correct:1}, {q:"Permutação 3 elem:", options:["3","6","9","1"], correct:1}]},
+                        {id:'n3_2', title:'Geometria Espacial', theory:'Volumes e áreas.', questions:[{q:"Volume cubo aresta 3:", options:["9","18","27","81"], correct:2}, {q:"Cilindro r=2 h=5 (pi=3):", options:["20","30","60","120"], correct:2}, {q:"Esfera tem faces?", options:["Sim","Não","Depende","Só 1"], correct:1}, {q:"Área cubo aresta 2:", options:["8","16","24","32"], correct:2}, {q:"Pirâmide volume:", options:["Prisma/2","Prisma/3","Prisma/4","Igual"], correct:1}]},
+                        {id:'n3_3', title:'Sequências: PA e PG', theory:'Progressões e somas.', questions:[{q:"PA: 2, 5, 8... 10º?", options:["27","29","31","33"], correct:1}, {q:"Soma 1-10:", options:["45","55","65","100"], correct:1}, {q:"PG a1=3 q=2, 4º:", options:["12","24","48","96"], correct:1}, {q:"Razão PA 10, 8, 6:", options:["2","-2","1","0"], correct:1}, {q:"Razão PG 2, 10, 50:", options:["2","5","10","8"], correct:1}]},
+                        {id:'n3_4', title:'Funções e Logaritmos', theory:'Logs e quadráticas.', questions:[{q:"log2(32):", options:["4","5","6","16"], correct:1}, {q:"f(x)=x^2, f(4):", options:["8","16","32","4"], correct:1}, {q:"log10(100):", options:["1","2","10","100"], correct:1}, {q:"Gráfico x^2:", options:["Reta","Círculo","Parábola","Ponto"], correct:2}, {q:"log(1):", options:["0","1","10","e"], correct:0}]}
                     ]
                 }
             },
@@ -194,22 +214,22 @@
                 ],
                 subjects: {
                     1: [
-                        {id:'obm1_1', title:'Aritmética e Padrões', theory:'Lógica dedutiva e invariantes.', questions:[{q:"João é 5º na frente e 10º de trás. Quantos na fila?", options:["14","15","13","16"], correct:0}, {q:"Próximo: 2, 6, 12, 20...?", options:["28","30","42","50"], correct:2}, {q:"Soma 1 a 100:", options:["5000","5050","5100","10000"], correct:1}, {q:"Algarismo 7 de 1 a 100:", options:["10","19","20","21"], correct:2}, {q:"100 dias após sábado:", options:["Segunda","Terça","Quarta","Domingo"], correct:0}]},
-                        {id:'obm1_2', title:'Geometria de Observação', theory:'Vistas, cortes e planificações.', questions:[{q:"Dado comum, oposta ao 1?", options:["2","4","5","6"], correct:3}, {q:"Cubinhos em cubo aresta 4?", options:["16","32","64","128"], correct:2}, {q:"Faces do octaedro:", options:["6","8","10","12"], correct:1}, {q:"Área triângulo em malha 1x1:", options:["0.5","1","2","1.5"], correct:0}, {q:"Corte diagonal no cubo gera:", options:["Círculo","Quadrado","Triângulo","Ponto"], correct:2}]},
-                        {id:'obm1_3', title:'Contagem Estruturada', theory:'Listagem inteligente e diagramas.', questions:[{q:"Números 2 dígitos com {1,2,3}:", options:["3","6","9","12"], correct:2}, {q:"A para C via B (3x4 caminhos):", options:["7","10","12","14"], correct:2}, {q:"Pintar 2 casas com 3 cores:", options:["3","6","9","1"], correct:2}, {q:"Triângulos num quadrado com X:", options:["4","6","8","10"], correct:2}, {q:"Jogos em 4 times (todos x todos):", options:["4","6","12","16"], correct:1}]},
-                        {id:'obm1_4', title:'Propriedades da Paridade', theory:'Análise de resultados pares/ímpares.', questions:[{q:"Ímpar + Ímpar + Ímpar é:", options:["Par","Ímpar","Zero","Primo"], correct:1}, {q:"Produto com um par é:", options:["Par","Ímpar","Zero","Indefinido"], correct:0}, {q:"x+y é ímpar, então:", options:["Ambos pares","Ambos ímpares","Um de cada","X=Y"], correct:2}, {q:"1+2+...+10 é:", options:["Par","Ímpar","Primo","Negativo"], correct:1}, {q:"Repartir 15 balas em pares:", options:["Sim","Não","Talvez","Sempre"], correct:1}]}
+                        {id:'obm1_1', title:'Aritmética e Padrões', theory:'Lógica dedutiva e invariantes.', questions:[{q:"João 5º frente 10º trás. Total?", options:["14","15","13","16"], correct:0}, {q:"Próximo: 2, 6, 12, 20...?", options:["28","30","42","50"], correct:2}, {q:"Soma 1 a 100:", options:["5000","5050","5100","10000"], correct:1}, {q:"Algarismo 7 de 1 a 100:", options:["10","19","20","21"], correct:2}, {q:"100 dias após sábado:", options:["Segunda","Terça","Quarta","Domingo"], correct:0}]},
+                        {id:'obm1_2', title:'Geometria de Observação', theory:'Vistas e cortes de sólidos.', questions:[{q:"Face oposta ao 1 dado:", options:["2","4","5","6"], correct:3}, {q:"Cubinhos aresta 4:", options:["16","32","64","128"], correct:2}, {q:"Faces octaedro:", options:["6","8","10","12"], correct:1}, {q:"Área triângulo base 1 h=1:", options:["0.5","1","2","1.5"], correct:0}, {q:"Diagonal corta cubo em:", options:["Triângulo","Quadrado","Retângulo","Ponto"], correct:2}]},
+                        {id:'obm1_3', title:'Contagem Estruturada', theory:'Listagem inteligente.', questions:[{q:"2 dígitos com {1,2,3}:", options:["3","6","9","12"], correct:2}, {q:"Caminhos 3x4:", options:["7","10","12","14"], correct:2}, {q:"Pintar 2 casas 3 cores:", options:["3","6","9","1"], correct:2}, {q:"Triângulos no quadrado X:", options:["4","6","8","10"], correct:2}, {q:"Jogos 4 times:", options:["4","6","12","16"], correct:1}]},
+                        {id:'obm1_4', title:'Propriedades da Paridade', theory:'Análise de pares e ímpares.', questions:[{q:"Ímpar + Ímpar + Ímpar:", options:["Par","Ímpar","Zero","Primo"], correct:1}, {q:"Produto com um par:", options:["Par","Ímpar","Zero","Indefinido"], correct:0}, {q:"x+y é ímpar:", options:["Ambos pares","Ambos ímpares","Um de cada","X=Y"], correct:2}, {q:"1+2+...+10:", options:["Par","Ímpar","Primo","Negativo"], correct:1}, {q:"Repartir 15 balas em pares:", options:["Sim","Não","Talvez","Sempre"], correct:1}]}
                     ],
                     2: [
-                        {id:'obm2_1', title:'Congruências', theory:'Teoria dos restos algébrica.', questions:[{q:"Resto de 2^10 por 3?", options:["0","1","2","4"], correct:1}, {q:"MDC(120, 144):", options:["12","24","48","6"], correct:1}, {q:"Divisores de 60:", options:["10","12","14","16"], correct:1}, {q:"Menor primo > 50:", options:["51","53","57","59"], correct:1}, {q:"Soma 2 ímpares:", options:["Ímpar","Par","Primo","Negativo"], correct:1}]},
-                        {id:'obm2_2', title:'Círculos e Cordas', theory:'Ângulos e potências em circunferências.', questions:[{q:"Ângulo inscrito no diâmetro:", options:["45","90","180","60"], correct:1}, {q:"Soma ângulos pentágono:", options:["360","540","720","180"], correct:1}, {q:"Área r=2 (pi=3):", options:["6","12","24","4"], correct:1}, {q:"3,4,5 é:", options:["Acutângulo","Retângulo","Obtusângulo","Isósceles"], correct:1}, {q:"Diagonais do quadrado:", options:["1","2","4","0"], correct:1}]},
-                        {id:'obm2_3', title:'Polinômios', theory:'Fatoração e produtos notáveis.', questions:[{q:"x²-y²:", options:["(x-y)²","(x+y)(x-y)","x²+y²","2x"], correct:1}, {q:"x+1/x=3, x²+1/x²?", options:["9","7","11","5"], correct:1}, {q:"Polinômio mônico tem líder:", options:["0","1","2","pi"], correct:1}, {q:"Grau P(2) x Q(3):", options:["5","6","2","3"], correct:0}, {q:"Raiz de x-5=0:", options:["0","5","-5","1"], correct:1}]},
+                        {id:'obm2_1', title:'Congruências', theory:'Teoria dos restos algébrica.', questions:[{q:"Resto 2^10 por 3?", options:["0","1","2","4"], correct:1}, {q:"MDC(120, 144):", options:["12","24","48","6"], correct:1}, {q:"Divisores de 60:", options:["10","12","14","16"], correct:1}, {q:"Menor primo > 50:", options:["51","53","57","59"], correct:1}, {q:"Soma 2 ímpares:", options:["Ímpar","Par","Primo","Negativo"], correct:1}]},
+                        {id:'obm2_2', title:'Círculos e Cordas', theory:'Ângulos e potências.', questions:[{q:"Ângulo inscrito diâmetro:", options:["45","90","180","60"], correct:1}, {q:"Soma ângulos pentágono:", options:["360","540","720","180"], correct:1}, {q:"Área r=2 (pi=3):", options:["6","12","24","4"], correct:1}, {q:"3,4,5 é:", options:["Acutângulo","Retângulo","Obtusângulo","Isósceles"], correct:1}, {q:"Diagonais quadrado:", options:["1","2","4","0"], correct:1}]},
+                        {id:'obm2_3', title:'Polinômios', theory:'Fatoração e Girard.', questions:[{q:"x²-y²:", options:["(x-y)²","(x+y)(x-y)","x²+y²","2x"], correct:1}, {q:"x+1/x=3, x²+1/x²?", options:["9","7","11","5"], correct:1}, {q:"Líder poli mônico:", options:["0","1","2","pi"], correct:1}, {q:"Grau P(2) x Q(3):", options:["5","6","2","3"], correct:0}, {q:"Raiz de x-5=0:", options:["0","5","-5","1"], correct:1}]},
                         {id:'obm2_4', title:'Pigeonhole', theory:'Princípio da Casa dos Pombos.', questions:[{q:"13 pessoas, mesmo mês?", options:["0","Ao menos 2","Exatamente 2","Todas"], correct:1}, {q:"Organizar 3 livros:", options:["3","6","9","1"], correct:1}, {q:"Subconjuntos {1,2,3}:", options:["3","6","8","4"], correct:2}, {q:"Anagramas OBM:", options:["3","6","9","2"], correct:1}, {q:"Soma 1 a 10:", options:["45","55","65","100"], correct:0}]}
                     ],
                     3: [
-                        {id:'obm3_1', title:'Indução e Funcionais', theory:'Prova por recorrência e equações de funções.', questions:[{q:"f(x+y)=f(x)+f(y), f(1)=2, f(10)?", options:["12","20","10","2"], correct:1}, {q:"Base da indução:", options:["n=0","n=1","Infinito","Qualquer"], correct:1}, {q:"Soma n ímpares:", options:["n","2n","n²","n+1"], correct:2}, {q:"Passo k para:", options:["k-1","k+1","2k","k²"], correct:1}, {q:"f(x)=x², f(f(2))?", options:["4","16","8","2"], correct:1}]},
-                        {id:'obm3_2', title:'Teorema de Fermat', theory:'Grandes restos e números primos.', questions:[{q:"Resto a^p por p:", options:["0","1","a","p"], correct:2}, {q:"7 é primo?", options:["Sim","Não","Depende","Só em Marte"], correct:0}, {q:"MDC primos entre si:", options:["0","1","Produto","Soma"], correct:1}, {q:"Número composto tem:", options:["2 div",">2 div","<2 div","0 div"], correct:1}, {q:"Resto 100 por 9:", options:["0","1","10","9"], correct:1}]},
-                        {id:'obm3_3', title:'Geometria Analítica', theory:'Coordenadas e vetores olímpicos.', questions:[{q:"Distância (0,0) a (3,4):", options:["5","7","12","25"], correct:0}, {q:"Médio (0,0) e (2,2):", options:["(0,0)","(1,1)","(2,2)","(1,0)"], correct:1}, {q:"Linear de y=2x+3:", options:["2","3","0","5"], correct:1}, {q:"Retas paralelas tem coef:", options:["Dif","Iguais","Opostos","Inversos"], correct:1}, {q:"Área (0,0),(1,0),(0,1):", options:["1","0.5","2","1.5"], correct:1}]},
-                        {id:'obm3_4', title:'Girard e Complexos', theory:'Relações entre raízes e coeficientes.', questions:[{q:"Soma raízes ax²+bx+c:", options:["b/a","-b/a","c/a","-c/a"], correct:1}, {q:"Produto raízes:", options:["b/a","-b/a","c/a","-c/a"], correct:2}, {q:"i² vale:", options:["1","-1","0","i"], correct:1}, {q:"Grau x^5+1:", options:["1","5","0","6"], correct:1}, {q:"Raízes grau n:", options:["1","n","n+1","0"], correct:1}]}
+                        {id:'obm3_1', title:'Indução e Funcionais', theory:'Prova por recorrência.', questions:[{q:"f(x+y)=f(x)+f(y), f(1)=2, f(10)?", options:["12","20","10","2"], correct:1}, {q:"Base indução:", options:["n=0","n=1","Infinito","Qualquer"], correct:1}, {q:"Soma n ímpares:", options:["n","2n","n²","n+1"], correct:2}, {q:"Passo k para:", options:["k-1","k+1","2k","k²"], correct:1}, {q:"f(x)=x², f(f(2))?", options:["4","16","8","2"], correct:1}]},
+                        {id:'obm3_2', title:'Teorema de Fermat', theory:'Grandes restos e números primos.', questions:[{q:"Resto a^p por p:", options:["0","1","a","p"], correct:2}, {q:"7 é primo?", options:["Sim","Não","Depende","Só em Marte"], correct:0}, {q:"MDC primos entre si:", options:["0","1","Produto","Soma"], correct:1}, {q:"Número composto:", options:["2 div",">2 div","<2 div","0 div"], correct:1}, {q:"Resto 100 por 9:", options:["0","1","10","9"], correct:1}]},
+                        {id:'obm3_3', title:'Geometria Analítica', theory:'Coordenadas olímpicas.', questions:[{q:"Distância (0,0) a (3,4):", options:["5","7","12","25"], correct:0}, {q:"Médio (0,0) e (2,2):", options:["(0,0)","(1,1)","(2,2)","(1,0)"], correct:1}, {q:"Linear y=2x+3:", options:["2","3","0","5"], correct:1}, {q:"Retas paralelas coef:", options:["Dif","Iguais","Opostos","Inversos"], correct:1}, {q:"Área (0,0),(1,0),(0,1):", options:["1","0.5","2","1.5"], correct:1}]},
+                        {id:'obm3_4', title:'Girard e Complexos', theory:'Raízes e coeficientes.', questions:[{q:"Soma raízes ax²+bx+c:", options:["b/a","-b/a","c/a","-c/a"], correct:1}, {q:"Produto raízes:", options:["b/a","-b/a","c/a","-c/a"], correct:2}, {q:"i² vale:", options:["1","-1","0","i"], correct:1}, {q:"Grau x^5+1:", options:["1","5","0","6"], correct:1}, {q:"Raízes grau n:", options:["1","n","n+1","0"], correct:1}]}
                     ]
                 }
             },
@@ -234,11 +254,11 @@
                                 <li><strong>• Nível S (Student):</strong> Para alunos da 3ª série do Ensino Médio.</li>
                             </ul>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="p-4 border border-gray-100 rounded-lg bg-white"><h5 class="font-bold mb-1">Quantidade de questões</h5><p class="text-sm">Níveis P e E: 24 questões. Níveis B, C, J e S: 30 questões.</p></div>
-                            <div class="p-4 border border-gray-100 rounded-lg bg-white"><h5 class="font-bold mb-1">Grau de dificuldade</h5><p class="text-sm">Divididas em três pesos: fácil, médio e difícil.</p></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div class="p-4 border border-gray-100 rounded-lg bg-white"><h5 class="font-bold mb-1 uppercase text-xs text-gray-500">Quantidade de questões</h5><p>Níveis P e E: 24 questões. Níveis B, C, J e S: 30 questões.</p></div>
+                            <div class="p-4 border border-gray-100 rounded-lg bg-white"><h5 class="font-bold mb-1 uppercase text-xs text-gray-500">Grau de dificuldade</h5><p>Divididas em três pesos: fácil, médio e difícil.</p></div>
                         </div>
-                        <div class="info-card p-6 rounded-lg shadow-sm"><h5 class="font-bold text-mensa-green mb-2">Foco</h5><p class="text-gray-700 italic">"O concurso é famoso por não focar na decoreba de fórmulas, mas sim em raciocínio lógico, interpretação e criatividade matemática."</p></div>
+                        <div class="info-card p-6 rounded-lg shadow-sm"><h5 class="font-bold text-mensa-green mb-2 text-sm uppercase">Foco do Concurso</h5><p class="text-gray-700 italic">"O concurso é famoso por não focar na decoreba de fórmulas, mas sim em raciocínio lógico, interpretação e criatividade matemática."</p></div>
                         <p class="text-center text-gray-500 text-sm font-medium animate-pulse">Selecione um nível acima para começar o seu treinamento!</p>
                     </div>
                 `,
@@ -251,21 +271,109 @@
                     { id: 'S', name: "Nível S", color: "bg-red-100 text-red-700" }
                 ],
                 subjects: {
-                    'P': [{ id: 'p1', title: 'Padrões Visuais', theory: 'Descobrir o que vem a seguir em sequências de cores e formas.', questions: [{q:"Vermelho, Azul, Verde, Vermelho, Azul...?", options:["Verde","Azul","Amarelo","Roxo"], correct:0}, {q:"Círculo, Quadrado, Círculo...?", options:["Círculo","Quadrado","Reta","Ponto"], correct:1}, {q:"Dobro de 5:", options:["7","10","15","25"], correct:1}, {q:"Patas de 2 cães:", options:["4","6","8","10"], correct:2}, {q:"Forma da lua cheia:", options:["Quadrado","Círculo","Triângulo","Linha"], correct:1}] }],
-                    'E': [{ id: 'e1', title: 'Aritmética Canguru', theory: 'Pequenas contas de somar e lógica de caminhos.', questions: [{q:"10+5+10:", options:["20","25","30","35"], correct:1}, {q:"Qual o maior: 11, 9, 21, 19?", options:["11","9","21","19"], correct:2}, {q:"Pernas de 3 humanos:", options:["2","4","6","8"], correct:2}, {q:"Minutos em meia hora:", options:["15","30","45","60"], correct:1}, {q:"Lados triângulo:", options:["2","3","4","5"], correct:1}] }],
-                    'B': [{ id: 'b1', title: 'Lógica Benjamin', theory: 'Problemas de contagem e geometria plana básica.', questions: [{q:"Lado quadrado é 4, perímetro:", options:["8","12","16","20"], correct:2}, {q:"Metade de 100:", options:["25","50","75","10"], correct:1}, {q:"Próximo: 2, 4, 8, 16...?", options:["24","32","64","30"], correct:1}, {q:"Cubo tem quantas faces?", options:["4","6","8","12"], correct:1}, {q:"90 min em horas:", options:["1h","1.5h","2h","3h"], correct:1}] }],
-                    'C': [{ id: 'c1', title: 'Álgebra e Espaço', theory: 'Balanças, equações simples e cubos.', questions: [{q:"x+5=15, x?", options:["5","10","15","20"], correct:1}, {q:"Área 5x5:", options:["10","20","25","30"], correct:2}, {q:"Ângulo reto:", options:["45","90","180","0"], correct:1}, {q:"3x=12, x?", options:["3","4","6","1"], correct:1}, {q:"Pentágono tem lados:", options:["4","5","6","8"], correct:1}] }],
-                    'J': [{ id: 'j1', title: 'Junior: Probabilidade', theory: 'Chance de eventos e lógica aplicada.', questions: [{q:"Moeda, chance cara:", options:["0","0.5","1","2"], correct:1}, {q:"Dado, sair 6:", options:["1/6","1/2","1/3","1"], correct:0}, {q:"10% de 500:", options:["5","50","100","500"], correct:1}, {q:"x+y=10, x=y. x?", options:["2","5","10","0"], correct:1}, {q:"Soma ângulos triângulo:", options:["90","180","360","45"], correct:1}] }],
-                    'S': [{ id: 's1', title: 'Student: Funções', theory: 'Análise de funções e problemas complexos.', questions: [{q:"log10(100):", options:["1","2","10","100"], correct:1}, {q:"f(x)=2x+1, f(3)?", options:["5","6","7","8"], correct:2}, {q:"Hipotenusa 3 e 4:", options:["5","6","7","8"], correct:0}, {q:"pi vale aprox:", options:["2.14","3.14","4.14","1"], correct:1}, {q:"Raiz de 144:", options:["10","11","12","14"], correct:2}] }]
+                    'P': [
+                        {id:'p1', title:'Sequências Lógicas', theory:'Identificar o que vem a seguir.', questions:[{q:"Círculo, Quadrado, Círculo...", options:["Quadrado","Círculo","Reta","Ponto"], correct:0}, {q:"Vermelho, Azul, Vermelho...", options:["Azul","Verde","Gelo","Fogo"], correct:0}, {q:"Dobro de 5:", options:["7","10","15","25"], correct:1}, {q:"Patas de 2 cães:", options:["4","6","8","10"], correct:2}, {q:"Forma da lua cheia:", options:["Quadrado","Círculo","Linha","Triângulo"], correct:1}]},
+                        {id:'p2', title:'Dominós e Dados', theory:'Lógica visual com peças de jogos.', questions:[{q:"Lado oposto ao 1 no dado:", options:["2","3","6","5"], correct:2}, {q:"Pecinha 2-1 próxima 1-?", options:["3","2","4","5"], correct:1}, {q:"Quantos pontos no dado total?", options:["10","15","21","24"], correct:2}, {q:"Dobro de 3 pontos:", options:["3","6","9","12"], correct:1}, {q:"Soma 2 e 4 pontos:", options:["4","5","6","7"], correct:2}]},
+                        {id:'p3', title:'Labirintos', theory:'Encontrar caminhos lógicos.', questions:[{q:"Caminho A para B:", options:["1","2","3","4"], correct:0}, {q:"Virar à direita vindo do Norte:", options:["Sul","Leste","Oeste","Cima"], correct:1}, {q:"Quantas curvas no labirinto?", options:["2","5","Depende","10"], correct:2}, {q:"Frente, Frente, Direita:", options:["L","R","F","G"], correct:1}, {q:"Volta completa tem:", options:["90°","180°","360°","45°"], correct:2}]},
+                        {id:'p4', title:'Contagem Simples', theory:'Contar objetos agrupados.', questions:[{q:"3 pares de sapatos:", options:["3","6","9","12"], correct:1}, {q:"Dúzias tem:", options:["10","12","24","6"], correct:1}, {q:"Meia dúzia:", options:["4","6","8","10"], correct:1}, {q:"Contar de 5 em 5 até 20:", options:["3 vezes","4 vezes","5 vezes","2 vezes"], correct:1}, {q:"Uma mão tem 5 dedos. Duas?", options:["5","10","15","20"], correct:1}]}
+                    ],
+                    'E': [
+                        {id:'e1', title:'Calendário', theory:'Entender dias e semanas.', questions:[{q:"Hoje segunda, daqui a 8 dias?", options:["Segunda","Terça","Quarta","Sábado"], correct:1}, {q:"Dias em fevereiro (normal):", options:["28","29","30","31"], correct:0}, {q:"Mês 12:", options:["Nov","Dez","Out","Jan"], correct:1}, {q:"Semanas em 14 dias:", options:["1","2","3","4"], correct:1}, {q:"Ontem foi domingo, amanhã?", options:["Segunda","Terça","Quarta","Quinta"], correct:1}]},
+                        {id:'e2', title:'Simetria Visual', theory:'Figuras espelhadas.', questions:[{q:"Letra simétrica:", options:["F","L","A","P"], correct:2}, {q:"Corte no papel dobrado:", options:["1 furo","2 furos","4 furos","Depende"], correct:3}, {q:"Reflexo do número 1:", options:["1","L","V","|"], correct:0}, {q:"Simetria do quadrado:", options:["1 eixo","2 eixos","4 eixos","0"], correct:2}, {q:"Espelho inverte:", options:["Cima/Baixo","Lados","Cores","Peso"], correct:1}]},
+                        {id:'e3', title:'Operações Canguru', theory:'Cálculos mentais rápidos.', questions:[{q:"10 + 5 - 2:", options:["10","13","15","17"], correct:1}, {q:"Dobro de 12:", options:["20","24","30","36"], correct:1}, {q:"Metade de 50:", options:["20","25","30","40"], correct:1}, {q:"5 x 4:", options:["15","20","25","30"], correct:1}, {q:"30 dividido por 3:", options:["3","10","30","1"], correct:1}]},
+                        {id:'e4', title:'Vistas e Espaço', theory:'Observar objetos de diferentes ângulos.', questions:[{q:"Cubo visto de cima é:", options:["Triângulo","Círculo","Quadrado","Ponto"], correct:2}, {q:"Pirâmide de cima:", options:["Quadrado","Triângulo","Retângulo","Linha"], correct:0}, {q:"Esfera de qualquer lado:", options:["Quadrado","Círculo","Triângulo","Ponto"], correct:1}, {q:"Lado oposto ao chão:", options:["Teto","Parede","Longe","Baixo"], correct:0}, {q:"3 cubos em fila:", options:["L","Reta","X","T"], correct:1}]}
+                    ],
+                    'B': [
+                        {id:'b1', title:'Perímetros e Áreas', theory:'Cálculos fundamentais de contorno.', questions:[{q:"Lado 6, perímetro quadrado:", options:["12","24","36","48"], correct:1}, {q:"Área 5x2:", options:["7","10","12","20"], correct:1}, {q:"Dobrar lado, área aumenta:", options:["2x","4x","6x","8x"], correct:1}, {q:"Perímetro triângulo 3,4,5:", options:["12","15","20","10"], correct:0}, {q:"Lado 10, área quadrado:", options:["20","40","100","10"], correct:2}]},
+                        {id:'b2', title:'Dobras de Papel', theory:'Lógica de simetria e perfuração.', questions:[{q:"Dobra ao meio e corta:", options:["1","2","4","8"], correct:1}, {q:"Dobra 2x e corta:", options:["2","4","6","8"], correct:1}, {q:"Simetria axial usa:", options:["Lupa","Espelho","Régua","Cola"], correct:1}, {q:"Quadrado dobrado na diagonal:", options:["Retângulo","Triângulo","Ponto","Linha"], correct:1}, {q:"Furo no centro da dobra:", options:["1 furo","2 furos","0 furos","Indef"], correct:0}]},
+                        {id:'b3', title:'Frações Reais', theory:'Dividir quantidades em partes.', questions:[{q:"1/2 de 100:", options:["25","50","75","10"], correct:1}, {q:"1/4 de 20:", options:["4","5","10","2"], correct:1}, {q:"3/4 é maior que 1/2?", options:["Sim","Não","Iguais","Zero"], correct:0}, {q:"Inteiro menos 1/3:", options:["1/3","2/3","1/4","1"], correct:1}, {q:"Metade da metade:", options:["1/2","1/4","1/8","1"], correct:1}]},
+                        {id:'b4', title:'Padrões Numéricos', theory:'Progressões lógicas.', questions:[{q:"2, 4, 8, 16...?", options:["24","32","64","30"], correct:1}, {q:"1, 4, 9, 16...?", options:["20","25","30","36"], correct:1}, {q:"10, 7, 4...?", options:["3","2","1","0"], correct:2}, {q:"Próximo primo após 7:", options:["8","9","11","13"], correct:2}, {q:"Soma 1 a 5:", options:["10","15","20","25"], correct:1}]}
+                    ],
+                    'C': [
+                        {id:'c1', title:'Álgebra Balança', theory:'Resolver x pelo equilíbrio.', questions:[{q:"x+10=25, x?", options:["10","15","20","5"], correct:1}, {q:"2x=12, x?", options:["2","6","12","1"], correct:1}, {q:"3x+1=10, x?", options:["2","3","4","5"], correct:1}, {q:"x-5=20, x?", options:["15","25","30","10"], correct:1}, {q:"2x=x+5, x?", options:["1","5","10","15"], correct:1}]},
+                        {id:'c2', title:'Áreas Sombreadas', theory:'Subtração de áreas simples.', questions:[{q:"Círculo dentro de quadrado:", options:["A-B","A+B","A*B","A/B"], correct:0}, {q:"Triângulo em retângulo:", options:["Metade","Dobro","Igual","Triplo"], correct:0}, {q:"Lado 4, área quadrado:", options:["8","16","20","4"], correct:1}, {q:"Área triângulo base 10 h=5:", options:["50","25","100","10"], correct:1}, {q:"Raio 1, área (pi=3):", options:["1","3","6","9"], correct:1}]},
+                        {id:'c3', title:'Proporção Direta', theory:'Regra de três.', questions:[{q:"1 doce R$ 2, 5 doces?", options:["5","10","15","20"], correct:1}, {q:"2L faz 20km, 4L faz:", options:["20","40","60","80"], correct:1}, {q:"10% de 500:", options:["5","50","100","500"], correct:1}, {q:"Dobro de 1/2:", options:["1/4","1","2","1/2"], correct:1}, {q:"Escala 1:100, 1cm é:", options:["1cm","100cm","10cm","1m"], correct:1}]},
+                        {id:'c4', title:'Geometria de Ângulos', theory:'Complementares e suplementares.', questions:[{q:"Soma ângulos triângulo:", options:["90","180","270","360"], correct:1}, {q:"Suplemento de 100:", options:["80","90","100","0"], correct:0}, {q:"Ângulo reto:", options:["45","90","180","360"], correct:1}, {q:"Ângulo raso:", options:["90","180","360","0"], correct:1}, {q:"Agudo é menor que:", options:["45","90","180","30"], correct:1}]}
+                    ],
+                    'J': [
+                        {id:'j1', title:'Probabilidade', theory:'Eventos complexos.', questions:[{q:"Moeda cara 2x:", options:["1/2","1/4","1/8","1"], correct:1}, {q:"Soma 7 em 2 dados:", options:["1/6","1/12","1/36","1/2"], correct:0}, {q:"Chance de 1 em 1000:", options:["0.1%","1%","10%","0.01%"], correct:0}, {q:"Urna 3v 7a, branca:", options:["30%","70%","0%","100%"], correct:2}, {q:"Eventos independentes:", options:["Soma","Prod","Sub","Div"], correct:1}]},
+                        {id:'j2', title:'Combinatória', theory:'Arranjos e permutações.', questions:[{q:"Anagramas OBM:", options:["3","6","9","12"], correct:1}, {q:"Pessoas em fila (3):", options:["3","6","9","1"], correct:1}, {q:"Comissão 2 de 4:", options:["4","6","8","10"], correct:1}, {q:"5! vale:", options:["25","60","100","120"], correct:3}, {q:"Ordem importa no arranjo?", options:["Sim","Não","Talvez","Nunca"], correct:0}]},
+                        {id:'j3', title:'Logaritmos', theory:'Propriedades operatórias.', questions:[{q:"log2(8):", options:["2","3","4","8"], correct:1}, {q:"log10(100):", options:["1","2","10","100"], correct:1}, {q:"log(1):", options:["0","1","10","e"], correct:0}, {q:"log(a*b):", options:["log a + b","log a * b","log a + log b","Indef"], correct:2}, {q:"log(a/b):", options:["log a - b","log a - log b","log a / b","Zero"], correct:1}]},
+                        {id:'j4', title:'Funções Exponenciais', theory:'Crescimento e decaimento.', questions:[{q:"2^3:", options:["6","8","9","12"], correct:1}, {q:"5^0:", options:["0","1","5","10"], correct:1}, {q:"Raiz de 2^4:", options:["2","4","8","16"], correct:1}, {q:"(1/2)^2:", options:["1","1/2","1/4","1/8"], correct:2}, {q:"Dobro de 2^10:", options:["2^11","2^20","4^10","2^12"], correct:0}]}
+                    ],
+                    'S': [
+                        {id:'s1', title:'Geometria Analítica', theory:'Distância e retas.', questions:[{q:"Distância (0,0) a (3,4):", options:["5","7","12","25"], correct:0}, {q:"Médio (0,0)-(2,2):", options:["(0,0)","(1,1)","(2,2)","(1,0)"], correct:1}, {q:"Coef angular y=2x:", options:["1","2","0","inf"], correct:1}, {q:"Reta y=x bissetriz:", options:["Par","Ímpar","I e III","II e IV"], correct:2}, {q:"Área (0,0),(1,0),(0,1):", options:["1","0.5","2","1.5"], correct:1}]},
+                        {id:'s2', title:'Números Complexos', theory:'Forma algébrica e i²=-1.', questions:[{q:"i^2 vale:", options:["1","-1","0","i"], correct:1}, {q:"i^4 vale:", options:["1","-1","0","i"], correct:0}, {q:"Parte real de 3+2i:", options:["2","3","3i","2i"], correct:1}, {q:"Módulo de 3+4i:", options:["5","7","25","1"], correct:0}, {q:"Conjugado de i:", options:["i","-i","1","-1"], correct:1}]},
+                        {id:'s3', title:'Matrizes', theory:'Operações e determinantes.', questions:[{q:"Det(I) identidade:", options:["0","1","2","Inf"], correct:1}, {q:"Matriz 2x2, det(ad-bc):", options:["Fórmula","Zero","Um","Indef"], correct:0}, {q:"Transposta troca:", options:["L por C","Sinal","Cores","Nada"], correct:0}, {q:"Soma matrizes exige:", options:["Mesmo tam","Tam dif","Ser quad","Ser ident"], correct:0}, {q:"Det de matriz nula:", options:["1","0","-1","Inf"], correct:1}]},
+                        {id:'s4', title:'Cálculo de Olimpíada', theory:'Limites e derivadas básicas aplicadas.', questions:[{q:"Derivada de x^2:", options:["x","2x","x^2","2"], correct:1}, {q:"Integral de 1:", options:["0","x","1","Indef"], correct:1}, {q:"Reta tangente usa:", options:["Seno","Derivada","Cosseno","Log"], correct:1}, {q:"Limite de 1/x (x->inf):", options:["0","1","Inf","Indef"], correct:0}, {q:"Ponto de máximo tem der:", options:["1","0","-1","2"], correct:1}]}
+                    ]
                 }
             },
             oba: {
                 title: "OBA",
-                levels: [{ id: 3, name: "Nível 3 (6º/9º EF)", color: "bg-blue-100 text-blue-700" }],
-                subjects: { 3: [{ id: 'solar', title: 'Sistema Solar', theory: 'Sol e planetas.', questions: [{q:"Maior planeta:", options:["Terra","Júpiter","Marte","Netuno"], correct:1}, {q:"Planeta vermelho:", options:["Vênus","Marte","Mercúrio","Urano"], correct:1}, {q:"Estrela do sistema:", options:["Lua","Sol","Sirius","Vega"], correct:1}, {q:"Nossa galáxia:", options:["Andrômeda","Via Láctea","Magalhães","Sombrero"], correct:1}, {q:"Anéis famosos:", options:["Júpiter","Saturno","Netuno","Marte"], correct:1}] }] }
+                info: `
+                    <div class="space-y-6 animate-fadeIn">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="bg-blue-600 p-3 rounded-lg"><svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+                            <h3 class="text-2xl font-bold text-gray-900">Guia da OBA (Astronomia)</h3>
+                        </div>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            A <strong>OBA</strong> (Olimpíada Brasileira de Astronomia e Astronáutica) é uma das competições científicas mais queridas do Brasil. Diferente da OBMEP, ela acontece em fase única e é conhecida por ter questões muito visuais e práticas.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div class="bg-blue-50 p-4 rounded-xl border border-blue-100"><h4 class="font-bold text-blue-800">Níveis da OBA</h4><ul><li>• Nível 1: 1º ao 3º EF</li><li>• Nível 2: 4º e 5º EF</li><li>• Nível 3: 6º ao 9º EF</li><li>• Nível 4: Ensino Médio</li></ul></div>
+                            <div class="info-card p-4 rounded-xl"><h4 class="font-bold text-blue-700">Como é a prova?</h4><p>10 questões: 7 de Astronomia e 3 de Astronáutica. Fase única!</p></div>
+                        </div>
+
+                        <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                            <h5 class="font-bold text-gray-800 mb-2">A MOBFOG (agora OBAFOG)</h5>
+                            <p class="text-sm text-gray-600">Junto com a OBA, acontece o lançamento de foguetes. O objetivo é alcance máximo com materiais como garrafa PET, papel ou canudos.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-blue-800">
+                            <div class="p-3 bg-blue-50 rounded-lg border border-blue-100 font-medium">Data Provável: 15 de Maio de 2026</div>
+                            <div class="p-3 bg-blue-50 rounded-lg border border-blue-100 font-medium">Inscrições: Até início de maio</div>
+                        </div>
+                        
+                        <p class="text-center text-gray-500 text-sm font-medium animate-pulse">Selecione o seu nível acima para começar!</p>
+                    </div>
+                `,
+                levels: [
+                    { id: 1, name: "Nível 1 (1º-3º EF)", color: "bg-blue-100 text-blue-700" },
+                    { id: 2, name: "Nível 2 (4º-5º EF)", color: "bg-indigo-100 text-indigo-700" },
+                    { id: 3, name: "Nível 3 (6º-9º EF)", color: "bg-sky-100 text-sky-700" },
+                    { id: 4, name: "Nível 4 (Médio)", color: "bg-slate-100 text-slate-700" }
+                ],
+                subjects: {
+                    1: [
+                        {id:'oba1_1', title:'Terra e Lua', theory:'Reconhecer o dia, a noite e que a Lua reflete a luz do Sol.', questions:[{q:"A Lua brilha porque:", options:["Tem luz própria","Reflete o Sol","É uma estrela","Tem fogo"], correct:1}, {q:"Duração do dia aprox:", options:["12h","24h","48h","1h"], correct:1}, {q:"A Terra gira em torno do:", options:["Lua","Marte","Sol","Júpiter"], correct:2}, {q:"Fase da lua redonda:", options:["Nova","Crescente","Cheia","Minguante"], correct:2}, {q:"O Sol nasce no:", options:["Norte","Sul","Leste","Oeste"], correct:2}]},
+                        {id:'oba1_2', title:'O Sol e Estrelas', theory:'O Sol é a estrela mais próxima da Terra.', questions:[{q:"O Sol é uma:", options:["Planeta","Lua","Estrela","Galáxia"], correct:2}, {q:"Estrelas brilham de:", options:["Dia e noite","Só noite","Só dia","Nunca"], correct:0}, {q:"Cor do Sol:", options:["Verde","Azul","Amarela","Roxa"], correct:2}, {q:"Estrela mais próxima:", options:["Sol","Sirius","Vega","Lua"], correct:0}, {q:"Grupos de estrelas:", options:["Nuvens","Constelações","Bolas","Sistemas"], correct:1}]},
+                        {id:'oba1_3', title:'Foguetes de Papel', theory:'Astronáutica básica para pequenos.', questions:[{q:"Foguete vai para o:", options:["Mar","Espaço","Chão","Shopping"], correct:1}, {q:"Usa-se para lançar:", options:["Vento","Impulso","Água","Nada"], correct:1}, {q:"Forma do foguete:", options:["Bola","Cubo","Cilíndrica","Plana"], correct:2}, {q:"A ponta chama-se:", options:["Pé","Coifa","Asa","Meio"], correct:1}, {q:"Foguete precisa de:", options:["Combustível","Comida","Sono","Água"], correct:0}]},
+                        {id:'oba1_4', title:'Planetas Vizinhos', theory:'Terra, Marte e Vênus.', questions:[{q:"Planeta Vermelho:", options:["Terra","Marte","Vênus","Sol"], correct:1}, {q:"Planeta que vivemos:", options:["Marte","Terra","Vênus","Lua"], correct:1}, {q:"Planeta mais brilhante:", options:["Marte","Vênus","Júpiter","Saturno"], correct:1}, {q:"Quantos planetas no total?", options:["5","8","10","12"], correct:1}, {q:"Planeta com anéis famosos:", options:["Terra","Marte","Saturno","Mercúrio"], correct:2}]}
+                    ],
+                    2: [
+                        {id:'oba2_1', title:'Estações do Ano', theory:'Inclinação da Terra e translação.', questions:[{q:"Estação do calor:", options:["Inverno","Outono","Primavera","Verão"], correct:3}, {q:"Folhas caem no:", options:["Verão","Inverno","Outono","Primavera"], correct:2}, {q:"Terra gira em:", options:["365 dias","24h","1 mês","10 anos"], correct:0}, {q:"Causa das estações:", options:["Distância","Inclinação","Vento","Lua"], correct:1}, {q:"Flores aparecem na:", options:["Primavera","Verão","Outono","Inverno"], correct:0}]},
+                        {id:'oba2_2', title:'Planetas e Satélites', theory:'Diferença entre planetas e luas.', questions:[{q:"Satélite natural da Terra:", options:["Sol","Lua","Marte","ISS"], correct:1}, {q:"Maior planeta:", options:["Terra","Júpiter","Saturno","Netuno"], correct:1}, {q:"Menor planeta:", options:["Mercúrio","Marte","Terra","Plutão"], correct:0}, {q:"Giram em torno do Sol:", options:["Estrelas","Planetas","Nuvens","Gaxílias"], correct:1}, {q:"Lua leva quanto para girar?", options:["1 dia","28 dias","1 ano","1h"], correct:1}]},
+                        {id:'oba2_3', title:'Gravidade', theory:'A força que nos mantém no chão.', questions:[{q:"Descobriu a gravidade:", options:["Newton","Einstein","Galileu","Pedro"], correct:0}, {q:"Na Lua pesamos:", options:["Mais","Menos","Igual","Nada"], correct:1}, {q:"Atrai a maçã:", options:["Vento","Gravidade","Magnetismo","Luz"], correct:1}, {q:"Mantém os planetas:", options:["Cordas","Gravidade","Fogo","Gelo"], correct:1}, {q:"Sem gravidade a gente:", options:["Afunda","Flutua","Cai","Dorme"], correct:1}]},
+                        {id:'oba2_4', title:'Missões Espaciais', theory:'História da ida ao espaço.', questions:[{q:"Primeiro homem na Lua:", options:["Gagarin","Armstrong","Aldrin","Pontes"], correct:1}, {q:"Primeiro brasileiro no espaço:", options:["Armstrong","Pontes","Santos Dumont","Pedro"], correct:1}, {q:"Ano da chegada na Lua:", options:["1950","1969","2000","1980"], correct:1}, {q:"Sigla da agência dos EUA:", options:["ESA","NASA","AEB","CNSA"], correct:1}, {q:"Foguete que levou o homem:", options:["Saturno V","Falcon 9","Soyuz","Vostok"], correct:0}]}
+                    ],
+                    3: [
+                        {id:'oba3_1', title:'Sistema Solar Profundo', theory:'Asteroides, cometas e planetas anões.', questions:[{q:"Cinturão de asteroides entre:", options:["Terra/Marte","Marte/Júpiter","Júpiter/Saturno","Sol/Mercúrio"], correct:1}, {q:"Cometas são feitos de:", options:["Fogo","Gelo/Poeira","Metal","Pedra"], correct:1}, {q:"Plutão hoje é:", options:["Planeta","Anão","Estrela","Lua"], correct:1}, {q:"Maior lua de Saturno:", options:["Titã","Europa","Ganimedes","Io"], correct:0}, {q:"Distância Terra-Sol (UA):", options:["1 UA","10 UA","100 UA","0.5 UA"], correct:0}]},
+                        {id:'oba3_2', title:'Eclipses e Marés', theory:'Alinhamento Sol-Terra-Lua.', questions:[{q:"Eclipse solar a Lua fica:", options:["Atrás","No meio","Longe","Vermelha"], correct:1}, {q:"Eclipse lunar a Lua fica:", options:["Sombra da Terra","Sombra do Sol","Longe","Nova"], correct:0}, {q:"Causa as marés:", options:["Vento","Gravidade da Lua","Navios","Peixes"], correct:1}, {q:"Eclipse solar fase:", options:["Nova","Cheia","Crescente","Minguante"], correct:0}, {q:"Eclipse lunar fase:", options:["Nova","Cheia","Crescente","Minguante"], correct:1}]},
+                        {id:'oba3_3', title:'Galáxias e Nebulosas', theory:'Nossa posição no Universo.', questions:[{q:"Nossa galáxia:", options:["Andrômeda","Via Láctea","Sombrero","Magalhães"], correct:1}, {q:"Berçários de estrelas:", options:["Buracos","Nebulosas","Planetas","Cometas"], correct:1}, {q:"Formato da Via Láctea:", options:["Bola","Espiral","Plana","Irregular"], correct:1}, {q:"Galáxia vizinha grande:", options:["Andrômeda","Triângulo","Pequena Nuvem","Orion"], correct:0}, {q:"Bilhões de galáxias no:", options:["Sistema","Universo","Galáxia","Sol"], correct:1}]},
+                        {id:'oba3_4', title:'Astronáutica Garrafa PET', theory:'Lançamento de foguetes nível 3.', questions:[{q:"Lei de ação e reação:", options:["1ª","2ª","3ª","4ª"], correct:2}, {q:"Combustível do N3:", options:["Fogo","Água/Ar","Vinagre","Pólvora"], correct:1}, {q:"Estabilização pelas:", options:["Aletas","Coifa","Carga","Bico"], correct:0}, {q:"Ângulo alcance máx:", options:["30°","45°","60°","90°"], correct:1}, {q:"Pressão gera:", options:["Empuxo","Peso","Arrasto","Calor"], correct:0}]}
+                    ],
+                    4: [
+                        {id:'oba4_1', title:'Leis de Kepler', theory:'Órbitas elípticas e áreas iguais.', questions:[{q:"Órbitas são:", options:["Círculos","Elipses","Retas","Quadrados"], correct:1}, {q:"Mais perto do Sol o planeta é:", options:["Lento","Rápido","Igual","Frio"], correct:1}, {q:"3ª Lei de Kepler relaciona:", options:["Massa/Raio","Período/Distância","Luz/Tempo","Veloc/Cor"], correct:1}, {q:"Sol ocupa um dos:", options:["Centros","Focos","Lados","Eixos"], correct:1}, {q:"Unidade de distância:", options:["Km","UA","Metros","Litros"], correct:1}]},
+                        {id:'oba4_2', title:'Astrofísica Estelar', theory:'Fusão nuclear e vida das estrelas.', questions:[{q:"Fonte de energia das estrelas:", options:["Combustão","Fusão Nuclear","Fricção","Gravidade"], correct:1}, {q:"Final de estrela massiva:", options:["Anã Branca","Buraco Negro","Planeta","Cometa"], correct:1}, {q:"Sol terminará como:", options:["Anã Branca","Buraco Negro","Estrela de Nêutrons","Gigante Azul"], correct:0}, {q:"Elemento principal estrelas:", options:["Hélio","Hidrogênio","Oxigênio","Ferro"], correct:1}, {q:"Cor de estrela mais quente:", options:["Vermelha","Amarela","Azul","Branca"], correct:2}]},
+                        {id:'oba4_3', title:'Cosmologia', theory:'Big Bang e expansão do Universo.', questions:[{q:"Teoria do início:", options:["Big Bang","Estado Estacionário","Colapso","Eterno"], correct:0}, {q:"Descobriu a expansão:", options:["Hubble","Newton","Einstein","Kepler"], correct:0}, {q:"Universo é composto 70% por:", options:["Matéria","Energia Escura","Luz","Planetas"], correct:1}, {q:"Radiação de fundo é eco do:", options:["Sol","Big Bang","Andrômeda","Vento"], correct:1}, {q:"Idade aprox Universo:", options:["4 bi","13.8 bi","100 bi","1 bi"], correct:1}]},
+                        {id:'oba4_4', title:'Astronáutica de Alta Pressão', theory:'Motores e foguetes químicos.', questions:[{q:"Velocidade de escape Terra:", options:["5 km/s","11.2 km/s","30 km/s","Luz"], correct:1}, {q:"Órbita Geoestacionária:", options:["Fica parada","Gira com Terra","Cai rápido","Vai pra Lua"], correct:1}, {q:"Foguetes químicos usam:", options:["Oxidante/Combustível","Água","Ar","Pilha"], correct:0}, {q:"Estágios servem para:", options:["Beleza","Perder peso morto","Gastar mais","Aumentar carga"], correct:1}, {q:"ISS significa:", options:["Satélite","Estação Espacial","Foguete","Base Lunar"], correct:1}]}
+                    ]
+                }
             },
-            mobfog: {
-                title: "MOBFOG",
+            obafog: {
+                title: "OBAFOG",
                 levels: [{ id: 3, name: "Nível 3 (6º/9º EF)", color: "bg-blue-100 text-blue-700" }],
                 subjects: { 3: [{ id: 'prop', title: 'Propulsão', theory: '3ª Lei de Newton.', questions: [{q:"Lei da ação e reação:", options:["1ª","2ª","3ª","4ª"], correct:2}, {q:"Foguete Nível 3 usa:", options:["Fogo","Água/Ar","Pólvora","Gás"], correct:1}, {q:"Estabilidade pelas:", options:["Aletas","Bico","Carga","Base"], correct:0}, {q:"Ângulo alcance máx:", options:["30","45","60","90"], correct:1}, {q:"Centro de massa deve estar:", options:["Atrás","Frente","Meio","Fora"], correct:1}] }] }
             }
@@ -289,7 +397,7 @@
             } else {
                 welcome.classList.remove('hidden');
                 theory.classList.add('hidden');
-                welcome.innerHTML = `<h4 class="text-xl font-medium text-gray-400">Escolha um nível para começar o treino de ${data[key].title}.</h4>`;
+                welcome.innerHTML = `<h4 class="text-xl font-medium text-gray-400">Escolha um nível para começar o treino.</h4>`;
             }
         }
 
@@ -320,7 +428,7 @@
                     ${s.title}
                     <svg class="w-4 h-4 opacity-0 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg>
                 </li>
-            `).join('') : '<li class="text-xs text-gray-400 italic">Módulos em breve...</li>';
+            `).join('') : '<li class="text-xs text-gray-400 italic">Módulos em atualização...</li>';
             document.getElementById('welcome-message').classList.remove('hidden');
             document.getElementById('welcome-message').innerHTML = `<h4 class="text-xl font-medium text-gray-400">Nível selecionado! Agora escolha um tópico à esquerda.</h4>`;
             document.getElementById('theory-section').classList.add('hidden');
@@ -365,11 +473,11 @@
             fb.classList.remove('hidden');
             buttons.forEach(b => b.disabled = true);
             if(sel === cor) {
-                fb.innerText = "Correto! Excelente raciocínio.";
+                fb.innerText = "Resposta Correta! Excelente!";
                 fb.className = "mt-2 text-sm text-green-600 font-bold";
                 buttons[sel].classList.add('correct');
             } else {
-                fb.innerText = "Incorreto. A resposta certa era a alternativa " + String.fromCharCode(65+cor);
+                fb.innerText = "Incorreto. Resposta certa: " + String.fromCharCode(65+cor);
                 fb.className = "mt-2 text-sm text-red-600 font-bold";
                 buttons[sel].classList.add('wrong');
                 buttons[cor].classList.add('correct');
