@@ -1,1 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jovens Brilhantes - Preparatório Olimpíadas | Mensa Brasil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="https://mensa.org.br/wp-content/uploads/2021/11/cropped-logo-mensa-brasil-32x32.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
 
+        .mensa-green-dark { background-color: #004d26; }
+        .mensa-green-primary { background-color: #006432; }
+        .mensa-green-light { background-color: #e6f0eb; }
+        .text-mensa-green { color: #006432; }
+        .border-mensa-green { border-color: #006432; }
+
+        .btn-tab.active {
+            background-color: #006432;
+            color: white;
+            border-bottom: 4px solid #004d26;
+        }
+
+        .quiz-option:hover {
+            background-color: #f1f5f9;
+        }
+
+        .quiz-option.correct {
+            background-color: #dcfce7;
+            border-color: #22c55e;
+        }
+
+        .quiz-option.wrong {
+            background-color: #fee2e2;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Cabeçalho -->
+    <header class="mensa-green-primary text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="mensalogo.jpeg" alt="Mensa Brasil Logo" class="h-12 brightness-0 invert">
+                <div class="border-l border-green-400 pl-4">
+                    <h1 class="text-xl font-bold leading-tight">Jovens Brilhantes</h1>
+                    <p class="text-xs uppercase tracking-widest text-green-200">Catálogo Preparatório para Olimpíadas</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        
+        <!-- Secção de Boas-vindas -->
+        <section class="mb-12 text-center">
+            <h2 class="text-3xl font-bold text-mensa-green mb-4">Bem-vindo ao Treinamento de Elite</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Espaço dedicado aos membros do programa Jovens Brilhantes para o aprimoramento em competições científicas nacionais e internacionais. Explore os tópicos, estude a teoria e teste os seus conhecimentos.
+            </p>
+        </section>
+
+        <!-- Navegação Principal (Olimpíadas) -->
+        <div class="flex flex-wrap justify-center gap-2 mb-8" id="olympiad-tabs">
+            <button onclick="switchOlympiad('obmep')" id="tab-obmep" class="btn-tab active px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">OBMEP</button>
+            <button onclick="switchOlympiad('obm')" id="tab-obm" class="btn-tab px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">OBM</button>
+            <button onclick="switchOlympiad('canguru')" id="tab-canguru" class="btn-tab px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">Canguru de Matemática</button>
+            <button onclick="switchOlympiad('oba')" id="tab-oba" class="btn-tab px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">OBA (Astronomia)</button>
+            <button onclick="switchOlympiad('mobfog')" id="tab-mobfog" class="btn-tab px-6 py-3 rounded-t-lg font-bold transition-all border border-gray-200 bg-white">MOBFOG (Foguetes)</button>
+        </div>
+
+        <!-- Seleção de Níveis -->
+        <div id="levels-container" class="mb-10 flex justify-center gap-4 flex-wrap">
+            <!-- Conteúdo Dinâmico de Níveis -->
+        </div>
+
+        <!-- Área de Conteúdo -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            
+            <!-- Barra Lateral de Tópicos -->
+            <aside class="lg:col-span-1 bg-white p-6 rounded-xl shadow-sm border border-gray-100 h-fit">
+                <h3 class="font-bold text-mensa-green mb-4 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    Tópicos do Nível
+                </h3>
+                <ul id="subjects-list" class="space-y-2">
+                    <!-- Conteúdo Dinâmico de Tópicos -->
+                </ul>
+            </aside>
+
+            <!-- Painel de Aprendizagem -->
+            <section class="lg:col-span-3">
+                <div id="learning-content" class="bg-white p-8 rounded-xl shadow-md border border-gray-100 min-h-[400px]">
+                    <div id="welcome-message" class="text-center py-20">
+                        <svg class="w-16 h-16 text-green-200 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <h4 class="text-xl font-medium text-gray-400">Selecione uma olimpíada e um tópico para começar.</h4>
+                    </div>
+                    
+                    <div id="theory-section" class="hidden">
+                        <!-- Conteúdo Dinâmico -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-center items-center text-center">
+            <div class="mb-0">
+                <img src="mensalogo.jpeg" alt="Mensa Brasil Logo" class="h-8 mb-4 mx-auto grayscale opacity-50">
+                <p class="text-sm">© 2024 Mensa Brasil - Programa Jovens Brilhantes.<br>Transformando potencial em inteligência estratégica.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Base de Dados
+        const data = {
+            obmep: {
+                title: "OBMEP",
+                levels: [
+                    { id: 1, name: "Nível 1 (6.º e 7.º)", color: "bg-green-100 text-green-700" },
+                    { id: 2, name: "Nível 2 (8.º e 9.º)", color: "bg-blue-100 text-blue-700" },
+                    { id: 3, name: "Nível 3 (Ensino Médio)", color: "bg-purple-100 text-purple-700" }
+                ],
+                subjects: {
+                    1: [
+                        { 
+                            id: 'divisibilidade', 
+                            title: 'Divisibilidade e Restos', 
+                            theory: 'A divisibilidade é uma propriedade fundamental. Um número inteiro é divisível por outro se o resto da divisão for zero. <br><br><strong>Principais Critérios:</strong><br>• Por 2: Par.<br>• Por 3: Soma dos algarismos divisível por 3.<br>• Por 5: Termina em 0 ou 5.<br>• Restos: Se um número n deixa resto r na divisão por d, então n = d x q + r.',
+                            khan: 'https://pt.khanacademy.org/math/arithmetic/arith-review-multiply-divide/arith-review-divisibility-tests/v/divisibility-tests-for-2-3-4-5-6-9-10',
+                            duolingo: 'https://www.duolingo.com/course/Math/en',
+                            questions: [
+                                { q: "Qual o resto da divisão de 1.234.567 por 3?", options: ["0", "1", "2", "3"], correct: 1 },
+                                { q: "Um número inteiro é divisível por 6 se ele for divisível por...", options: ["2 e 3 ao mesmo tempo", "Somente por 3", "Qualquer número par", "Terminar em 6"], correct: 0 },
+                                { q: "O número 450 é divisível por 9?", options: ["Não", "Sim, pois 4+5+0 = 9", "Apenas se for dividido por 5", "Sim, pois termina em 0"], correct: 1 },
+                                { q: "Qual o menor número de três algarismos divisível por 2, 3 e 5 simultaneamente?", options: ["100", "110", "120", "150"], correct: 2 },
+                                { q: "Se n deixa resto 2 na divisão por 5, qual o resto de n + 10 na divisão por 5?", options: ["0", "2", "4", "1"], correct: 1 }
+                            ]
+                        },
+                        {
+                            id: 'contagem',
+                            title: 'Contagem e Raciocínio Lógico',
+                            theory: 'Problemas de contagem na OBMEP geralmente envolvem o Princípio Multiplicativo. Se temos 2 caminhos para ir de A até B e 3 caminhos de B até C, temos 2 x 3 = 6 caminhos de A até C.<br><br><strong>Dica de Ouro:</strong> Muitas vezes é mais fácil resolver o problema desenhando uma árvore de possibilidades ou analisando casos menores para encontrar um padrão.',
+                            khan: 'https://pt.khanacademy.org/math/statistics-probability/counting-permutations-and-combinations',
+                            duolingo: 'https://www.duolingo.com/course/Math/en',
+                            questions: [
+                                { q: "Ana tem 3 blusas diferentes e 2 saias diferentes. De quantas maneiras ela pode se vestir?", options: ["5", "6", "1", "4"], correct: 1 },
+                                { q: "Quantos números de dois algarismos distintos podemos formar usando os dígitos 1, 2 e 3?", options: ["3", "6", "9", "4"], correct: 1 },
+                                { q: "Um dado é lançado. Qual a probabilidade de sair um número par?", options: ["1/6", "1/2", "1/3", "2/3"], correct: 1 },
+                                { q: "Se hoje é segunda-feira, daqui a 15 dias será que dia da semana?", options: ["Segunda", "Terça", "Quarta", "Domingo"], correct: 1 },
+                                { q: "Em uma corrida, João ultrapassou o segundo colocado. Em que posição ele ficou?", options: ["Primeiro", "Segundo", "Terceiro", "Quarto"], correct: 1 }
+                            ]
+                        },
+                        {
+                            id: 'geometria_nivel1',
+                            title: 'Geometria: Áreas e Perímetros',
+                            theory: '<strong>Perímetro:</strong> É a soma de todos os lados de uma figura.<br><strong>Área:</strong> É a medida da superfície.<br><br>• Área do Quadrado: lado x lado.<br>• Área do Retângulo: base x altura.<br>• Área do Triângulo: (base x altura) / 2.<br><br>Na OBMEP, é comum figuras compostas onde você precisa "cortar" ou "colar" partes para calcular a área total.',
+                            khan: 'https://pt.khanacademy.org/math/geometry/hs-geo-foundations/hs-geo-area',
+                            duolingo: 'https://www.duolingo.com/course/Math/en',
+                            questions: [
+                                { q: "Um quadrado tem lado de 5cm. Qual o seu perímetro?", options: ["10cm", "20cm", "25cm", "15cm"], correct: 1 },
+                                { q: "Qual a área de um retângulo de base 8cm e altura 3cm?", options: ["11cm²", "22cm²", "24cm²", "18cm²"], correct: 2 },
+                                { q: "Se dobrarmos o lado de um quadrado, sua área aumenta quantas vezes?", options: ["2 vezes", "3 vezes", "4 vezes", "8 vezes"], correct: 2 },
+                                { q: "Um triângulo tem base 10cm e altura 4cm. Qual sua área?", options: ["40cm²", "20cm²", "14cm²", "10cm²"], correct: 1 },
+                                { q: "O perímetro de um retângulo é 20cm. Se a base mede 6cm, quanto mede a altura?", options: ["4cm", "14cm", "8cm", "10cm"], correct: 0 }
+                            ]
+                        },
+                        {
+                            id: 'fracoes_decimais',
+                            title: 'Frações e Decimais',
+                            theory: 'Frações representam partes de um inteiro. <br>• 1/2 é a metade.<br>• 1/4 é a quarta parte.<br><br><strong>Transformação:</strong> Para transformar 1/2 em decimal, dividimos 1 por 2, resultando em 0,5. <br><strong>Dica OBMEP:</strong> Sempre simplifique as suas frações antes de fazer cálculos grandes para evitar erros aritméticos bobos.',
+                            khan: 'https://pt.khanacademy.org/math/arithmetic/fraction-arithmetic',
+                            duolingo: 'https://www.duolingo.com/course/Math/en',
+                            questions: [
+                                { q: "Qual fração é maior: 1/2 ou 1/3?", options: ["1/2", "1/3", "São iguais", "Depende do valor"], correct: 0 },
+                                { q: "Quanto é 1/4 de 100?", options: ["10", "20", "25", "50"], correct: 2 },
+                                { q: "A soma de 0,5 + 0,25 é igual a qual fração?", options: ["1/2", "3/4", "1/4", "1/8"], correct: 1 },
+                                { q: "Se uma pizza foi cortada em 8 pedaços e você comeu 3, qual fração sobrou?", options: ["3/8", "5/8", "1/2", "8/3"], correct: 1 },
+                                { q: "Qual o valor decimal da fração 4/5?", options: ["0,4", "0,5", "0,8", "4,5"], correct: 2 }
+                            ]
+                        }
+                    ],
+                    2: [
+                        {
+                            id: 'algebra_equacoes',
+                            title: 'Álgebra: Equações e Sistemas',
+                            theory: 'No Nível 2, a álgebra torna-se uma ferramenta poderosa para resolver problemas de lógica. <br><br><strong>Equações do 1.º Grau:</strong> Sentenças abertas como ax + b = c. <br><strong>Sistemas de Equações:</strong> Quando temos duas incógnitas (como x e y) e duas condições. Exemplo: x + y = 10 e x - y = 4. <br><strong>Dica:</strong> Substituição ou Adição são os métodos mais comuns para resolver sistemas na OBMEP.',
+                            khan: 'https://pt.khanacademy.org/math/algebra/x2f8bb11595b61c86:solve-equations-inequalities',
+                            duolingo: 'https://www.duolingo.com/course/Math/en',
+                            questions: [
+                                { q: "Se 3x + 5 = 20, qual o valor de x?", options: ["3", "5", "10", "15"], correct: 1 },
+                                { q: "Num sistema, x+y=10 e x-y=2. Qual o valor de x?", options: ["4", "5", "6", "8"], correct: 2 },
+                                { q: "A soma de três números consecutivos é 30. Qual é o maior deles?", options: ["9", "10", "11", "12"], correct: 2 },
+                                { q: "Se 2(x - 3) = 10, então x é:", options: ["5", "8", "13", "11"], correct: 1 },
+                                { q: "Um pai tem 40 anos e o filho 10. Daqui a quantos anos o pai terá o triplo da idade do filho?", options: ["5", "10", "15", "2"], correct: 0 }
+                            ]
+                        },
+                        {
+                            id: 'pitagoras_angulos',
+                            title: 'Geometria: Pitágoras e Ângulos',
+                            theory: 'O <strong>Teorema de Pitágoras</strong> é essencial para o Nível 2. Em qualquer triângulo retângulo: a² + b² = c², onde c é a hipotenusa. <br><br><strong>Ângulos:</strong> <br>• A soma dos ângulos internos de um triângulo é sempre 180º. <br>• Ângulos opostos pelo vértice são iguais. <br>• Ângulos alternos internos (entre retas paralelas cortadas por uma transversal) também são iguais.',
+                            khan: 'https://pt.khanacademy.org/math/geometry/hs-geo-trig/hs-geo-pythagorean-thm',
+                            duolingo: 'https://www.duolingo.com/course/Math/en',
+                            questions: [
+                                { q: "Um triângulo retângulo tem catetos de 3cm e 4cm. Qual a hipotenusa?", options: ["5cm", "6cm", "7cm", "10cm"], correct: 0 },
+                                { q: "Qual a soma dos ângulos internos de um quadrilátero?", options: ["180°", "270°", "360°", "540°"], correct: 2 },
+                                { q: "Em um triângulo isósceles, um ângulo da base mede 50°. Qual o ângulo do topo?", options: ["50°", "80°", "100°", "130°"], correct: 1 },
+                                { q: "A hipotenusa mede 13cm e um cateto 12cm. Quanto mede o outro cateto?", options: ["1cm", "5cm", "10cm", "25cm"], correct: 1 },
+                                { q: "Qual o ângulo suplementar de 60°?", options: ["30°", "90°", "120°", "180°"], correct: 2 }
+                            ]
+                        },
+                        {
+                            id: 'probabilidade_n2',
+                            title: 'Probabilidade e Estatística',
+                            theory: 'A <strong>Probabilidade</strong> mede a chance de um evento ocorrer. <br>P = Casos Favoráveis / Casos Totais <br><br>No Nível 2, a estatística envolve calcular a <strong>Média Aritmética</strong> (soma dos valores dividida pela quantidade) e interpretar gráficos de barras ou setores. Lembre-se: probabilidades variam entre 0 (impossível) e 1 (certeza).',
+                            khan: 'https://pt.khanacademy.org/math/statistics-probability/probability-library',
+                            duolingo: 'https://www.duolingo.com/course/Math/en',
+                            questions: [
+                                { q: "Ao lançar um dado, qual a probabilidade de sair um número maior que 4?", options: ["1/6", "1/3", "1/2", "2/3"], correct: 1 },
+                                { q: "A média de idade de 3 amigos é 20 anos. Se um tem 18 e outro 22, qual a idade do terceiro?", options: ["18", "20", "22", "24"], correct: 1 },
+                                { q: "Uma urna tem 5 bolas vermelhas e 5 azuis. Qual a chance de tirar uma azul?", options: ["25%", "50%", "75%", "100%"], correct: 1 },
+                                { q: "Se a probabilidade de chover é 0,3, qual a probabilidade de não chover?", options: ["0,3", "0,5", "0,7", "1,0"], correct: 2 },
+                                { q: "Numa turma de 40 alunos, 10 são canhotos. Qual a percentagem de destros?", options: ["10%", "25%", "75%", "90%"], correct: 2 }
+                            ]
+                        },
+                        {
+                            id: 'proporcionalidade_n2',
+                            title: 'Proporcionalidade e Percentagem',
+                            theory: '<strong>Regra de Três:</strong> Fundamental para lidar com grandezas que crescem ou diminuem juntas. <br><br><strong>Percentagem:</strong> Representa uma fração de denominador 100. <br>Aumentar um valor em 20% é o mesmo que multiplicar por 1,20. Diminuir em 20% é multiplicar por 0,80. Problemas de Nível 2 costumam misturar descontos sucessivos.',
+                            khan: 'https://pt.khanacademy.org/math/pre-algebra/pre-algebra-ratios-rates',
+                            duolingo: 'https://www.duolingo.com/course/Math/en',
+                            questions: [
+                                { q: "Se 3 canetas custam R$ 12, quanto custam 10 canetas?", options: ["R$ 30", "R$ 40", "R$ 50", "R$ 60"], correct: 1 },
+                                { q: "Um produto de R$ 80 teve um desconto de 10%. Qual o novo preço?", options: ["R$ 70", "R$ 72", "R$ 75", "R$ 78"], correct: 1 },
+                                { q: "25% de 200 é igual a:", options: ["25", "40", "50", "100"], correct: 2 },
+                                { q: "Se uma velocidade de 60km/h leva 2h, quanto tempo leva a 120km/h?", options: ["1h", "4h", "3h", "0,5h"], correct: 0 },
+                                { q: "Um aumento de 50% seguido de um desconto de 50% resulta em:", options: ["O preço original", "Aumento de 25%", "Desconto de 25%", "Desconto de 5%"], correct: 2 }
+                            ]
+                        }
+                    ],
+                    3: [
+                        {
+                            id: 'analise_combinatoria_avancada',
+                            title: 'Análise Combinatória Avançada',
+                            theory: 'No Ensino Médio, exploramos agrupamentos complexos. <br><br><strong>Permutações:</strong> Quando a ordem importa e usamos todos os elementos (Pn = n!). <br><strong>Arranjos:</strong> A ordem importa mas usamos apenas parte dos elementos. <br><strong>Combinações:</strong> A ordem NÃO importa. <br><br><strong>Dica OBMEP:</strong> Muitos problemas de Nível 3 envolvem o "Método das Barras e Bolinhas" (Combinações Completas).',
+                            khan: 'https://pt.khanacademy.org/math/statistics-probability/counting-permutations-and-combinations',
+                            duolingo: 'https://www.duolingo.com/course/Math/en',
+                            questions: [
+                                { q: "Quantos anagramas possui a palavra MENSA?", options: ["60", "120", "240", "720"], correct: 1 },
+                                { q: "De quantas formas podemos escolher 2 representantes em uma sala de 10 alunos?", options: ["20", "45", "90", "100"], correct: 1 },
+                                { q: "Numa estante com 5 livros diferentes, de quantas formas podemos organizá-los?", options: ["25", "50", "120", "240"], correct: 2 },
+                                { q: "Se 4 pessoas vão sentar em um banco de 4 lugares, mas João e Maria devem ficar juntos, quantas são as possibilidades?", options: ["6", "12", "24", "48"], correct: 1 },
+                                { q: "Quantos números de 3 algarismos distintos podem ser formados com os dígitos {1,2,3,4,5}?", options: ["15", "60", "125", "10"], correct: 1 }
+                            ]
+                        },
+                        {
+                            id: 'geometria_espacial',
+                            title: 'Geometria Espacial (Volumes e Áreas)',
+                            theory: 'Expandimos a geometria plana para as 3 dimensões. <br><br>• <strong>Cubo:</strong> V = a³. <br>• <strong>Prismas:</strong> V = Área da base x Altura. <br>• <strong>Pirâmides e Cones:</strong> V = (1/3) x Área da base x Altura. <br>• <strong>Esferas:</strong> V = (4/3) x pi x R³. <br><br>A OBMEP adora problemas que envolvem seções (cortes) em sólidos ou o cálculo da distância entre vértices não adjacentes.',
+                            khan: 'https://pt.khanacademy.org/math/geometry/hs-geo-solids',
+                            duolingo: 'https://www.duolingo.com/course/Math/en',
+                            questions: [
+                                { q: "Qual o volume de um cubo de aresta 3cm?", options: ["9cm³", "18cm³", "27cm³", "81cm³"], correct: 2 },
+                                { q: "Um cilindro tem raio 2 e altura 5. Qual o seu volume (use pi=3)?", options: ["20", "30", "60", "120"], correct: 2 },
+                                { q: "Se dobrarmos a aresta de um cubo, seu volume aumenta quantas vezes?", options: ["2", "4", "8", "16"], correct: 2 },
+                                { q: "Uma pirâmide tem a mesma base e altura de um prisma. A razão entre seus volumes é:", options: ["1/2", "1/3", "1/4", "Igual"], correct: 1 },
+                                { q: "Qual a área total de um cubo de aresta 2?", options: ["8", "16", "24", "4"], correct: 2 }
+                            ]
+                        },
+                        {
+                            id: 'sequencias_pa_pg',
+                            title: 'Sequências: PA e PG',
+                            theory: '<strong>Progressão Aritmética (PA):</strong> Cada termo é o anterior somado a uma constante r. an = a1 + (n-1)x r. <br><strong>Progressão Geométrica (PG):</strong> Cada termo é o anterior multiplicado por uma constante q. an = a1 x q^(n-1). <br><br><strong>Soma da PA:</strong> Sn = [(a1 + an) x n] / 2. <br><strong>Soma da PG infinita:</strong> S = a1 / (1-q).',
+                            khan: 'https://pt.khanacademy.org/math/algebra/x2f8bb11595b61c86:sequences',
+                            duolingo: 'https://www.duolingo.com/course/Math/en',
+                            questions: [
+                                { q: "Qual o 10º termo da PA (2, 5, 8...)?", options: ["27", "29", "31", "32"], correct: 1 },
+                                { q: "Qual a soma dos 10 primeiros números naturais positivos?", options: ["45", "55", "65", "100"], correct: 1 },
+                                { q: "Numa PG de primeiro termo 3 e razão 2, qual o 4º termo?", options: ["9", "12", "24", "48"], correct: 2 },
+                                { q: "Qual a razão de uma PA onde a1 = 5 e a4 = 14?", options: ["2", "3", "4", "9"], correct: 1 },
+                                { q: "Qual o valor da soma infinita 1 + 1/2 + 1/4 + 1/8 + ... ?", options: ["1,5", "2", "3", "Infinito"], correct: 1 }
+                            ]
+                        },
+                        {
+                            id: 'funcoes_logaritmos',
+                            title: 'Funções e Logaritmos',
+                            theory: '<strong>Funções:</strong> Relações entre conjuntos. No Nível 3, focamos em funções de 2º grau (parábolas) e suas raízes. <br><strong>Logaritmos:</strong> O inverso da exponenciação. log_b(a) = x significa b^x = a. <br><br><strong>Propriedades:</strong> <br>1. log(a x b) = log a + log b <br>2. log(a / b) = log a - log b <br>3. log(a^k) = k x log a.',
+                            khan: 'https://pt.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:logs',
+                            duolingo: 'https://www.duolingo.com/course/Math/en',
+                            questions: [
+                                { q: "Qual o valor de log2(32)?", options: ["4", "5", "6", "16"], correct: 1 },
+                                { q: "Se f(x) = x² - 4x + 4, qual o valor de f(2)?", options: ["0", "2", "4", "8"], correct: 0 },
+                                { q: "Qual a base do logaritmo natural (ln)?", options: ["10", "2", "e", "0"], correct: 2 },
+                                { q: "Quanto vale log(100) na base 10?", options: ["1", "2", "10", "100"], correct: 1 },
+                                { q: "O gráfico de uma função do 2º grau é uma:", options: ["Reta", "Circunferência", "Parábola", "Hipérbole"], correct: 2 }
+                            ]
+                        }
+                    ]
+                }
+            },
+            obm: {
+                title: "OBM",
+                levels: [
+                    { id: 1, name: "Nível 1", color: "bg-green-100 text-green-700" },
+                    { id: 2, name: "Nível 2", color: "bg-blue-100 text-blue-700" },
+                    { id: 3, name: "Nível 3", color: "bg-red-100 text-red-700" }
+                ],
+                subjects: {}
+            },
+            canguru: {
+                title: "Canguru",
+                levels: [
+                    { id: 'B', name: "Benjamin", color: "bg-blue-100 text-blue-700" },
+                    { id: 'C', name: "Cadet", color: "bg-purple-100 text-purple-700" }
+                ],
+                subjects: {
+                    'B': [{ id: 'logica', title: 'Raciocínio Lógico', theory: 'O Canguru foca em lógica aplicada e visual...', questions: [], khan: '#', duolingo: '#' }]
+                }
+            },
+            oba: {
+                title: "OBA (Astronomia)",
+                levels: [
+                    { id: 1, name: "Nível 1", color: "bg-orange-100 text-orange-700" },
+                    { id: 2, name: "Nível 2", color: "bg-yellow-100 text-yellow-700" },
+                    { id: 3, name: "Nível 3", color: "bg-blue-100 text-blue-700" },
+                    { id: 4, name: "Nível 4", color: "bg-indigo-100 text-indigo-700" }
+                ],
+                subjects: {
+                    3: [
+                        {
+                            id: 'sistema_solar',
+                            title: 'O Sistema Solar',
+                            theory: 'O nosso Sistema Solar é composto pelo Sol, oito planetas principais, planetas anões e corpos menores como asteroides e cometas.<br><br><strong>Os Planetas:</strong><br>• <strong>Rochosos:</strong> Mercúrio, Vénus, Terra e Marte.<br>• <strong>Gasosos/Gelados:</strong> Júpiter, Saturno, Úrano e Neptuno.<br><br>O Sol contém 99,8% de toda a massa do sistema.',
+                            khan: 'https://pt.khanacademy.org/science/cosmology-and-astronomy/solar-system-topic',
+                            duolingo: '#',
+                            questions: [
+                                { q: "Qual o maior planeta do Sistema Solar?", options: ["Terra", "Júpiter", "Saturno", "Marte"], correct: 1 },
+                                { q: "Quais são os planetas conhecidos como 'Gigantes Gasosos'?", options: ["Mercúrio e Vénus", "Terra e Marte", "Júpiter e Saturno", "Úrano e Plutão"], correct: 2 },
+                                { q: "Qual o nome da galáxia onde se localiza o Sistema Solar?", options: ["Andrómeda", "Via Láctea", "Sombrero", "Magalhães"], correct: 1 },
+                                { q: "Qual planeta é conhecido como o 'Planeta Vermelho'?", options: ["Vénus", "Júpiter", "Marte", "Mercúrio"], correct: 2 },
+                                { q: "Aproximadamente, quanto tempo a luz do Sol demora para chegar à Terra?", options: ["8 segundos", "8 minutos", "8 horas", "1 ano"], correct: 1 }
+                            ]
+                        }
+                    ]
+                }
+            },
+            mobfog: {
+                title: "MOBFOG",
+                levels: [
+                    { id: 1, name: "Nível 1 (1.º ao 3.º EF)", color: "bg-orange-100 text-orange-700" },
+                    { id: 2, name: "Nível 2 (4.º ao 5.º EF)", color: "bg-yellow-100 text-yellow-700" },
+                    { id: 3, name: "Nível 3 (6.º ao 9.º EF)", color: "bg-blue-100 text-blue-700" },
+                    { id: 4, name: "Nível 4 (Ensino Médio)", color: "bg-red-100 text-red-700" }
+                ],
+                subjects: {
+                    3: [
+                        {
+                            id: 'propulsao',
+                            title: 'Propulsão e Aerodinâmica',
+                            theory: 'A MOBFOG no Nível 3 utiliza foguetes de garrafa PET movidos a ar comprimido e água. <br><br><strong>Conceitos Chave:</strong><br>• <strong>3.ª Lei de Newton:</strong> Para cada ação (expulsão da água) há uma reação oposta e de igual intensidade (subida do foguete).<br>• <strong>Centro de Massa (CM) e Centro de Pressão (CP):</strong> Para um voo estável, o CM deve estar à frente do CP.<br>• <strong>Aerodinâmica:</strong> O bico (coifa) reduz o arrasto, enquanto as empenas (aletas) garantem a estabilidade direcional.',
+                            khan: 'https://pt.khanacademy.org/science/physics/forces-newtons-laws',
+                            duolingo: '#',
+                            questions: [
+                                { q: "Qual lei da física explica o impulso inicial de um foguete?", options: ["1.ª Lei de Newton", "2.ª Lei de Newton", "3.ª Lei de Newton", "Lei da Gravitação"], correct: 2 },
+                                { q: "Qual o combustível/propelente utilizado nos foguetes de Nível 3 da MOBFOG?", options: ["Álcool e Fogo", "Vinagre e Bicarbonato", "Ar comprimido e Água", "Pólvora"], correct: 2 },
+                                { q: "Para que servem as empenas (aletas) na base do foguete?", options: ["Apenas para estética", "Para dar estabilidade ao voo", "Para aumentar o peso", "Para armazenar água"], correct: 1 },
+                                { q: "Onde deve estar o Centro de Massa (CM) em relação ao Centro de Pressão (CP) para um voo estável?", options: ["CM à frente do CP", "CP à frente do CM", "Ambos no mesmo ponto", "O CM deve estar na cauda"], correct: 0 },
+                                { q: "Qual o ângulo ideal de lançamento para atingir o alcance máximo (em teoria, sem vácuo)?", options: ["90 graus", "0 graus", "45 graus", "60 graus"], correct: 2 }
+                            ]
+                        }
+                    ]
+                }
+            }
+        };
+
+        let currentOlympiad = 'obmep';
+        let currentLevel = null;
+
+        function switchOlympiad(key) {
+            currentOlympiad = key;
+            currentLevel = null;
+            
+            // Atualizar UI das Abas
+            document.querySelectorAll('#olympiad-tabs button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tab-${key}`).classList.add('active');
+            
+            renderLevels();
+            document.getElementById('subjects-list').innerHTML = '';
+            document.getElementById('welcome-message').classList.remove('hidden');
+            document.getElementById('theory-section').classList.add('hidden');
+        }
+
+        function renderLevels() {
+            const container = document.getElementById('levels-container');
+            const levels = data[currentOlympiad].levels;
+            
+            container.innerHTML = levels.map(lvl => `
+                <button onclick="selectLevel('${lvl.id}')" class="px-4 py-2 rounded-full text-sm font-bold shadow-sm border border-gray-200 transition-transform hover:scale-105 ${lvl.color}">
+                    ${lvl.name}
+                </button>
+            `).join('');
+        }
+
+        function selectLevel(lvlId) {
+            currentLevel = lvlId;
+            const subjects = data[currentOlympiad].subjects[lvlId] || [];
+            const list = document.getElementById('subjects-list');
+            
+            list.innerHTML = subjects.length > 0 ? subjects.map(s => `
+                <li onclick="loadSubject('${lvlId}', '${s.id}')" class="p-3 rounded-lg border border-gray-100 cursor-pointer hover:bg-green-50 hover:text-mensa-green transition-all font-medium text-sm flex justify-between items-center group">
+                    ${s.title}
+                    <svg class="w-4 h-4 opacity-0 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </li>
+            `).join('') : '<li class="text-xs text-gray-400 italic">Nenhum tópico cadastrado para este nível ainda.</li>';
+            
+            document.getElementById('welcome-message').classList.remove('hidden');
+            document.getElementById('theory-section').classList.add('hidden');
+        }
+
+        function loadSubject(lvlId, subjId) {
+            const subject = data[currentOlympiad].subjects[lvlId].find(s => s.id === subjId);
+            const content = document.getElementById('theory-section');
+            const welcome = document.getElementById('welcome-message');
+            
+            welcome.classList.add('hidden');
+            content.classList.remove('hidden');
+            
+            let questionsHtml = '';
+            if(subject.questions && subject.questions.length > 0) {
+                questionsHtml = `
+                    <div class="mt-12 bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h4 class="text-xl font-bold text-mensa-green mb-6 flex items-center">
+                            <span class="bg-mensa-green text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">?</span>
+                            Desafio de Treino
+                        </h4>
+                        <div class="space-y-8">
+                            ${subject.questions.map((q, idx) => `
+                                <div class="question-block" id="q-block-${idx}">
+                                    <p class="font-semibold mb-4">${idx + 1}. ${q.q}</p>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        ${q.options.map((opt, optIdx) => `
+                                            <button onclick="checkAnswer(${idx}, ${optIdx}, ${q.correct})" class="quiz-option text-left p-3 border border-gray-300 rounded-lg transition-colors text-sm bg-white">
+                                                <span class="font-bold mr-2">${String.fromCharCode(65 + optIdx)})</span> ${opt}
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                    <p id="feedback-${idx}" class="mt-2 text-sm hidden font-medium"></p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                questionsHtml = `
+                    <div class="mt-12 p-8 text-center border-2 border-dashed border-gray-200 rounded-xl">
+                        <p class="text-gray-400">O módulo de questões para este tópico está a ser preparado pelos nossos tutores.</p>
+                    </div>
+                `;
+            }
+
+            content.innerHTML = `
+                <div class="flex flex-col md:flex-row justify-between items-start mb-6 gap-4">
+                    <h3 class="text-2xl font-bold text-gray-900 border-b-4 border-mensa-green pb-2">${subject.title}</h3>
+                    <div class="flex gap-2">
+                        <a href="${subject.khan}" target="_blank" class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded hover:bg-blue-700 transition">Explorar na Khan Academy</a>
+                    </div>
+                </div>
+                
+                <div class="prose max-w-none text-gray-700 leading-relaxed mb-10">
+                    ${subject.theory}
+                </div>
+
+                ${questionsHtml}
+            `;
+        }
+
+        function checkAnswer(qIdx, selectedIdx, correctIdx) {
+            const block = document.getElementById(`q-block-${qIdx}`);
+            const buttons = block.querySelectorAll('.quiz-option');
+            const feedback = document.getElementById(`feedback-${qIdx}`);
+            
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.remove('correct', 'wrong');
+            });
+            
+            if (selectedIdx === correctIdx) {
+                buttons[selectedIdx].classList.add('correct');
+                feedback.innerText = "Correto! Excelente raciocínio.";
+                feedback.className = "mt-2 text-sm text-green-600 font-bold";
+            } else {
+                buttons[selectedIdx].classList.add('wrong');
+                buttons[correctIdx].classList.add('correct');
+                feedback.innerText = "Resposta incorreta. Estude um pouco mais o tópico!";
+                feedback.className = "mt-2 text-sm text-red-600 font-bold";
+            }
+            feedback.classList.remove('hidden');
+        }
+
+        window.onload = () => {
+            switchOlympiad('obmep');
+        };
+    </script>
+</body>
+</html>
